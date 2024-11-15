@@ -1,1 +1,5 @@
-<p>test-component works!</p>
+<form (ngSubmit)="submitUser()" class="input-form">
+    <label for="user">Enter a user id</label>
+    <input type="text" name="user" id="user" placeholder="Type a string here" [(ngModel)]="userForm">
+    <button type="submit">Add user</button>
+</form>
