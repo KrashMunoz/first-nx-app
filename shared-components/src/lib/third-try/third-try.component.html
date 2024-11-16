@@ -1,1 +1,9 @@
-<p>third-try works!</p>
+@if (user$ | async; as userState)  {
+    <ul>
+        @for (user of userState['ids']; track user) {
+            <li>{{user}}</li>
+        }
+    </ul>
+} @else {
+    <span>State Unavailable...</span>
+}
