@@ -1,1 +1,25 @@
-<p>nav-bar works!</p>
+<header class="navbar">
+    <!-- <button id="menuButton" class="menu-button">
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+        <span class="menu-icon"></span>
+    </button> -->
+    <span class="app-title">{{title()}}</span>
+    <ul class="menu-list">
+        @for (option of navOptions; track option) {
+        <li class="menu-link">
+            <a [routerLink]="option.value" routerLinkActive="active">{{option.label}}</a>
+        </li>
+        }
+    </ul>
+</header>
+
+<!-- Sidenav -->
+<!-- <nav id="sidenav" class="sidenav">
+    <ul>
+        <li><a href="#" id="homeLink">Home</a></li>
+        <li><a href="#" icd="aboutLink">About</a></li>
+        <li><a href="#" id="servicesLink">Services</a></li>
+        <li><a href="#" id="contactLink">Contact</a></li>
+    </ul>
+</nav> -->
