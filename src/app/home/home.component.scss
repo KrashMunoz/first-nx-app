@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    height: calc(100% - 82px);
+}
+
+.grid-item {
+    background-color: lightgray;
+    padding: 16px;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

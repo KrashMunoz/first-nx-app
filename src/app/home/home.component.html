@@ -1,3 +1,11 @@
-<lib-test-component></lib-test-component>
-<lib-shared-components></lib-shared-components>
-<lib-third-try></lib-third-try>
+<lib-grid-layout [columns]="'repeat(4, 1fr)'" [rows]="'auto'" [gap]="'20px'">
+    <lib-test-component></lib-test-component>
+    <lib-shared-components></lib-shared-components>
+    <lib-third-try></lib-third-try>
+    <!-- Testing grid-item class -->
+    <div class="grid-item">one</div>
+    <div class="grid-item">two</div>
+    <div class="grid-item">three</div>
+    <div class="grid-item">four</div>
+    <div class="grid-item">five</div>
+</lib-grid-layout>
