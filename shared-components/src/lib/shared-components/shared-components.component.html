@@ -1,2 +1,23 @@
-<h2 class="title">Users in JSON Format:</h2>
-<p>{{(user$ | async) | json}}</p>
+<h2 class="title">Users Table:</h2>
+@if (user$ | async; as userData) {
+    @if (userData.ids.length > 0) {
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Entity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (id of userData?.ids; track id) {
+                <tr>
+                    <td>{{userData.entities[id]?.id}}</td>
+                    <td>{{userData.entities[id] | json}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    } @else {
+        <span>No data.</span>
+    }
+}
