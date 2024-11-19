@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, computed, effect, HostBinding, input, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,10 +13,13 @@ export class GridLayoutComponent {
     @Input() columns: string = 'repeat(auto-fill, minmax(200px, 1fr))';  // Default to auto-fill with minmax
     @Input() rows: string = 'auto'; // Default to auto rows
     @Input() gap: string = '16px'; // Default gap between items
+    templateAreas = input<string>('');
   
-    // @HostBinding('style.display') display = 'grid';  // Apply display grid style
-  
-    constructor() {}
+    constructor() {
+      effect(() => {
+        console.log(this.templateAreas());
+      })
+    }
   
     ngOnInit(): void {
       // Logic to handle other initializations if needed

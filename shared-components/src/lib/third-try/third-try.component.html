@@ -1,3 +1,4 @@
+<h2 class="title">Users in List Format:</h2>
 @if (user$ | async; as userState)  {
     <ul>
         @for (user of userState['ids']; track user) {
