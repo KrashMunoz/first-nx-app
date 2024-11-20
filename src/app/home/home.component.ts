@@ -39,6 +39,7 @@ export class HomeComponent implements OnDestroy {
     private store: Store,
     private breakpointObserver: BreakpointObserver
   ) {
+    // TODO: Refactor breakpoint observer subscriptions
     this.breakpointObserver.observe(Breakpoints.Small).subscribe({
       next: () => {
         console.log('Small Breakpoint');
