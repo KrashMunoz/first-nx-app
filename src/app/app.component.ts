@@ -22,8 +22,8 @@ export class AppComponent {
   constructor(private store: Store) {
     this.store.select(usersFeature.selectUsersState).subscribe({
       next: (users) => {
-        console.log('Getting User State...');
-        console.log({ users });
+        // console.log('Getting User State...');
+        // console.log({ users });
       },
       error: (err) => console.error(err),
     });

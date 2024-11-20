@@ -15,11 +15,7 @@ export class GridLayoutComponent {
     @Input() gap: string = '16px'; // Default gap between items
     templateAreas = input<string>('');
   
-    constructor() {
-      effect(() => {
-        console.log(this.templateAreas());
-      })
-    }
+    constructor() { }
   
     ngOnInit(): void {
       // Logic to handle other initializations if needed

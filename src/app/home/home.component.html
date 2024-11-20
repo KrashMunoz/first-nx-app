@@ -1,6 +1,13 @@
-<lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
-    [templateAreas]="templateAreas">
+@if (!!isSmall$) {
+<div class="flex-wrapper">
+    <lib-test-component class="grid-item" [style.gridArea]="'side'"></lib-test-component>
+    <lib-shared-components class="grid-item" [style.gridArea]="'top-main'"></lib-shared-components>
+    <lib-third-try class="grid-item" [style.gridArea]="'bottom-main'"></lib-third-try>
+</div>
+} @else {
+<lib-grid-layout [columns]="columns" [rows]="rows" [gap]="'20px'" [templateAreas]="templateAreas">
     <lib-test-component class="grid-item" [style.gridArea]="'side'"></lib-test-component>
     <lib-shared-components class="grid-item" [style.gridArea]="'top-main'"></lib-shared-components>
     <lib-third-try class="grid-item" [style.gridArea]="'bottom-main'"></lib-third-try>
 </lib-grid-layout>
+}

@@ -19,7 +19,7 @@ export class TestComponentComponent {
     const formModel = {
       user: this.userForm
     };
-    console.log({formModel});
+    // console.log({formModel});
     if (!!formModel.user) {
       const user: User = {id : formModel.user};
       this.store.dispatch(UserActions.addUser({user}));

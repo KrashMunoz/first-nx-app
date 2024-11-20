@@ -16,9 +16,9 @@ export class SharedComponentsComponent {
 
   constructor(private store: Store) {
     this.user$ = this.store.select(usersFeature.selectUsersState);
-    this.user$.subscribe({
-      next: (response) => console.log(response),
-      error: (err) => console.error(err)
-    })
+    // this.user$.subscribe({
+    //   next: (response) => console.log(response),
+    //   error: (err) => console.error(err)
+    // })
   }
 }
