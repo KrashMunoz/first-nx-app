@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import {
-  SharedComponentsComponent,
-  TestComponentComponent,
-  ThirdTryComponent,
   NavBarComponent
 } from '@myngapp/shared-components';
-import { Store, StoreModule } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { usersFeature } from './user.reducer';
 
 @Component({
