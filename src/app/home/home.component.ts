@@ -40,17 +40,15 @@ export class HomeComponent {
     private breakpointObserver: BreakpointObserver,
     private destroyRef: DestroyRef
   ) {
-    // TODO: Refactor breakpoint observer subscriptions
     this.breakpointObserver
-      .observe(Breakpoints.Large)
+      .observe([Breakpoints.Large, Breakpoints.Medium])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (state) => {
+          // this.logCurrentRange();
           if (!!state.matches) {
-            console.log('Web Screen...');
             this.applyWebScreenGrid();
           } else {
-            console.log('Tablet...');
             this.applyTabletScreenGrid();
           }
         },
@@ -68,6 +66,18 @@ export class HomeComponent {
           }
         },
       });
+  }
+
+  /**
+   * Log Current Breakpoint (Checking for Webscreen)
+   */
+  logCurrentRange() {
+    if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
+      console.log('Large Breakpoint');
+    }
+    if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
+      console.log('Medium Breakpoint');
+    }
   }
 
   /**
