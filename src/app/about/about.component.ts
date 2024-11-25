@@ -11,9 +11,9 @@ import { GridLayoutComponent } from '@myngapp/shared-components';
 })
 export class AboutComponent {
   templateAreas: string = `
-  "side top-main top-main top-main top-main top-main"
-  "side top-main top-main top-main top-main top-main"
-  "side bottom-main bottom-main bottom-main bottom-main bottom-main"
-  "side bottom-main bottom-main bottom-main bottom-main bottom-main"
+  "side-top side-top side-top top-main top-main top-main"
+  "side-top side-top side-top top-main top-main top-main"
+  "side-bottom side-bottom bottom-main bottom-main bottom-right bottom-right"
+  "side-bottom side-bottom bottom-main bottom-main bottom-right bottom-right"
   `;
 }
