@@ -2,13 +2,14 @@
 
 # Stage 1: Build the Angular app
 FROM node:lts-alpine AS build
+# FROM node:18 AS build
 
 WORKDIR /app
 
 COPY package.json package-lock.json nx.json ./
 COPY . .
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 # RUN npm run build --prod
 # RUN nx run build
