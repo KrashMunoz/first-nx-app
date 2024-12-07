@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {
-  NavBarComponent
-} from '@myngapp/shared-components';
+import { NavBarComponent } from '@myngapp/shared-components';
 import { Store } from '@ngrx/store';
 import { usersFeature } from './user.reducer';
+import { TestStoreService } from './services/test-store/test-store.service';
 
 @Component({
   standalone: true,
-  imports: [
-    RouterModule,
-    NavBarComponent
-  ],
+  providers: [TestStoreService],
+  imports: [RouterModule, NavBarComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

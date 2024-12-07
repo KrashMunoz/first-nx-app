@@ -30,3 +30,24 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+@font-face {
+    font-family: 'Bokor';
+    /* Name to reference the font */
+    src: url('fonts/Bokor/Bokor-Regular.ttf') format('truetype');
+    /* Path to the TTF file */
+}
+
+@font-face {
+    font-family: 'CrimsonText';
+    /* Name to reference the font */
+    src: url('fonts/Crimson_Text/CrimsonText-Regular.ttf') format('truetype');
+    /* Path to the TTF file */
+}
+
+@font-face {
+    font-family: 'Lacquer';
+    /* Name to reference the font */
+    src: url('fonts/Lacquer/Lacquer-Regular.ttf') format('truetype');
+    /* Path to the TTF file */
+}
