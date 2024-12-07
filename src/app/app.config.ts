@@ -5,6 +5,7 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import * as fromUser from './user.reducer';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideStore({ users: fromUser.reducer }),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }, provideAnimationsAsync(),
   ],
 };

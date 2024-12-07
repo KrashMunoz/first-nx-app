@@ -1,14 +1,25 @@
 <lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
     [templateAreas]="templateAreas">
     <div [style.gridArea]="'top-main'" class="grid-item">
-        <!-- <label for="user-name">User Name</label> -->
-        <input type="text" id="user-name" [(ngModel)]="username" (ngModelChange)="store.eventHandler($event)">
-        <!-- <p>{{username}}</p> -->
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput type="text" [(ngModel)]="username" (ngModelChange)="store.eventHandler($event)">
+        </mat-form-field>
     </div>
     <div class="grid-item" [style.gridArea]="'side'">
         <p>gridArea: sidebar</p>
     </div>
     <div class="grid-item" [style.gridArea]="'bottom-main'">
-        <p>{{store.$user()}}</p>
+        <div class="flex f-row">
+            <div class="container">
+                <span>NgModel</span>
+                <p>{{username}}</p>
+            </div>
+            <!-- Display Store Value -->
+            <div class="container">
+                <span>Store State</span>
+                <p>{{store.$user()}}</p>
+            </div>
+        </div>
     </div>
 </lib-grid-layout>

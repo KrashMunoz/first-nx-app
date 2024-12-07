@@ -3,11 +3,18 @@ import { CommonModule } from '@angular/common';
 import { GridLayoutComponent } from '@myngapp/shared-components';
 import { TestStoreService } from '../services/test-store/test-store.service';
 import { FormsModule } from '@angular/forms';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-more',
   standalone: true,
-  imports: [CommonModule, GridLayoutComponent, FormsModule],
+  imports: [
+    CommonModule,
+    GridLayoutComponent,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+  ],
   templateUrl: './more.component.html',
   styleUrl: './more.component.scss',
 })

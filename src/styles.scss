@@ -51,3 +51,5 @@ a:hover {
     src: url('fonts/Lacquer/Lacquer-Regular.ttf') format('truetype');
     /* Path to the TTF file */
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
