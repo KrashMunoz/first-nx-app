@@ -1,12 +1,14 @@
 <lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
     [templateAreas]="templateAreas">
     <div [style.gridArea]="'top-main'" class="grid-item">
-        <p>more works!</p>
+        <!-- <label for="user-name">User Name</label> -->
+        <input type="text" id="user-name" [(ngModel)]="username" (ngModelChange)="store.eventHandler($event)">
+        <!-- <p>{{username}}</p> -->
     </div>
     <div class="grid-item" [style.gridArea]="'side'">
         <p>gridArea: sidebar</p>
     </div>
     <div class="grid-item" [style.gridArea]="'bottom-main'">
-        <p>gridArea: bottom-main</p>
+        <p>{{store.$user()}}</p>
     </div>
 </lib-grid-layout>

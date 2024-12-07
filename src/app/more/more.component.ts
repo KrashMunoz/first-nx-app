@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GridLayoutComponent } from '@myngapp/shared-components';
+import { TestStoreService } from '../services/test-store/test-store.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-more',
   standalone: true,
-  imports: [CommonModule, GridLayoutComponent],
+  imports: [CommonModule, GridLayoutComponent, FormsModule],
   templateUrl: './more.component.html',
   styleUrl: './more.component.scss',
 })
 export class MoreComponent {
+  public store = inject(TestStoreService);
+
   templateAreas: string = `
   "top-main top-main top-main top-main top-main top-main"
   "top-main top-main top-main top-main top-main top-main"
@@ -17,5 +21,5 @@ export class MoreComponent {
   "bottom-main bottom-main bottom-main bottom-main bottom-main side"
   `;
 
-  constructor() {}
+  username: string = this.store.$user();
 }
