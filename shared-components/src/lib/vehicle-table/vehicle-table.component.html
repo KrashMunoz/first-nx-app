@@ -1,0 +1,12 @@
+<mat-accordion>
+    @for (vehicle of tableData(); track vehicle) {
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title> {{vehicle.name}} </mat-panel-title>
+            <mat-panel-description> {{vehicle.type}} - {{vehicle.status}} </mat-panel-description>
+        </mat-expansion-panel-header>
+        <lib-inventory-table [tableData]="vehicle.inventory" [displayedColumns]="writeColumns"
+            (modelChanged)="handleInventoryEvent(vehicle.name, $event)"></lib-inventory-table>
+    </mat-expansion-panel>
+    }
+</mat-accordion>

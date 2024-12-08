@@ -1,22 +1,41 @@
 <lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
     [templateAreas]="templateAreas">
     <div [style.gridArea]="'top-main'" class="grid-item">
-        @if (!inventory.$loading()) {
-        <lib-inventory-table [isReadonly]="true" [tableData]="inventory.$vehicles()"
-            [displayedColumns]="['name', 'type', 'status', 'inTransit']"></lib-inventory-table>
+        @if (!inventory.$loading() && !!inventory.$targetVehicle()) {
+            <div class="target-container">
+                <p>Target: {{inventory.$targetVehicle()?.name}}</p>
+                <lib-inventory-table [isReadonly]="true" [tableData]="inventory.$targetVehicleComputed().inventory || []"
+                    [displayedColumns]="['name', 'quantity', 'target', 'after']" [afterValues]="inventory.$afterForTarget()"></lib-inventory-table>
+            </div>
         } @else {
-            <p>Loading Inventory...</p>
+        <p>Loading Inventory...</p>
         }
     </div>
     <div [style.gridArea]="'side-top'" class="grid-item">
-        <p>Insert Vehicle List</p>
-        <lib-inventory-table></lib-inventory-table>
+        @if (!inventory.$loading()) {
+            <div class="vehicle-container">
+                <p>All Vehicles:</p>
+                <lib-vehicle-table [isReadonly]="true" [tableData]="inventory.$vehicles()"
+                    [displayedColumns]="['name', 'type', 'status', 'inTransit']"></lib-vehicle-table>
+            </div>
+        } @else {
+            <span>
+                Loading Vehicles...
+            </span>
+        }
     </div>
     <div [style.gridArea]="'bottom-main'" class="grid-item">
-        <p>gridArea: bottom-main</p>
+        <!-- <p>gridArea: bottom-main</p> -->
+        <p>Computed 'After' Value:</p>
+        {{inventory.$afterForTarget() | json}}
+         <!-- {{inventory.$}} -->
+        <!-- <lib-inventory-table [isReadonly]="true" [tableData]="inventory.$targetVehicle()?.inventory || []"
+            [displayedColumns]="['name', 'quantity']"></lib-inventory-table> -->
     </div>
     <div [style.gridArea]="'side-bottom'" class="grid-item">
-        <p>gridArea: side-bottom</p>
+        <!-- <p>gridArea: side-bottom</p> -->
+        <p>Computed Inventory Payload:</p>
+        {{inventory.$inventoryPayload() | json}}
     </div>
     <div [style.gridArea]="'bottom-right'" class="grid-item">
         <p>{{store.$user()}}</p>

@@ -4,6 +4,7 @@ import {
   GridLayoutComponent,
   InventoryStore,
   InventoryTableComponent,
+  VehicleTableComponent,
 } from '@myngapp/shared-components';
 import { TestStoreService } from '../services/test-store/test-store.service';
 
@@ -11,7 +12,12 @@ import { TestStoreService } from '../services/test-store/test-store.service';
   selector: 'app-about',
   standalone: true,
   providers: [InventoryStore],
-  imports: [CommonModule, GridLayoutComponent, InventoryTableComponent],
+  imports: [
+    CommonModule,
+    GridLayoutComponent,
+    VehicleTableComponent,
+    InventoryTableComponent,
+  ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })
