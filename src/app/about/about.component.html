@@ -1,4 +1,4 @@
-<lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
+<lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(6, 1fr)'" [gap]="'20px'"
     [templateAreas]="templateAreas">
     <div [style.gridArea]="'top-main'" class="grid-item">
         @if (!inventory.$loading() && !!inventory.$targetVehicle()) {
@@ -25,13 +25,19 @@
         }
     </div>
     <div [style.gridArea]="'bottom-main'" class="grid-item">
-        <p>Computed 'After' Value:</p>
-        {{inventory.$afterForTarget() | json}}
+        <div class="target-container">
+            <p>Computed 'After' Value:</p>
+            <div class="content-wrapper">
+                {{inventory.$afterForTarget() | json}}
+            </div>
+        </div>
     </div>
     <div [style.gridArea]="'side-bottom'" class="grid-item">
-        <p>Computed Inventory Payload:</p>
-        <div style="padding: 0 1rem;">
-            {{inventory.$inventoryPayload() | json}}
+        <div class="target-container">
+            <p>Computed Inventory Payload:</p>
+            <div class="content-wrapper">
+                {{inventory.$inventoryPayload() | json}}
+            </div>
         </div>
     </div>
     <div [style.gridArea]="'bottom-right'" class="grid-item">
