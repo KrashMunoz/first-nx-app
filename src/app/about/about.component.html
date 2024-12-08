@@ -1,10 +1,16 @@
 <lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
     [templateAreas]="templateAreas">
     <div [style.gridArea]="'top-main'" class="grid-item">
-        <p>about works!</p>
+        @if (!inventory.$loading()) {
+        <lib-inventory-table [isReadonly]="true" [tableData]="inventory.$vehicles()"
+            [displayedColumns]="['name', 'type', 'status', 'inTransit']"></lib-inventory-table>
+        } @else {
+            <p>Loading Inventory...</p>
+        }
     </div>
     <div [style.gridArea]="'side-top'" class="grid-item">
-        <p>gridArea: side-top</p>
+        <p>Insert Vehicle List</p>
+        <lib-inventory-table></lib-inventory-table>
     </div>
     <div [style.gridArea]="'bottom-main'" class="grid-item">
         <p>gridArea: bottom-main</p>

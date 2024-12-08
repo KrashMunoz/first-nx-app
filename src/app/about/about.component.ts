@@ -1,17 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GridLayoutComponent } from '@myngapp/shared-components';
+import {
+  GridLayoutComponent,
+  InventoryStore,
+  InventoryTableComponent,
+} from '@myngapp/shared-components';
 import { TestStoreService } from '../services/test-store/test-store.service';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, GridLayoutComponent],
+  providers: [InventoryStore],
+  imports: [CommonModule, GridLayoutComponent, InventoryTableComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })
 export class AboutComponent {
   store = inject(TestStoreService);
+  inventory = inject(InventoryStore);
   templateAreas: string = `
   "side-top side-top side-top top-main top-main top-main"
   "side-top side-top side-top top-main top-main top-main"

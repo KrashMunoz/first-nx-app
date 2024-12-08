@@ -1,0 +1,25 @@
+<!-- {{tableData() | json}} -->
+<table mat-table [dataSource]="tableData()">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+    <!-- In Transit Column -->
+    <ng-container matColumnDef="inTransit">
+        <th mat-header-cell *matHeaderCellDef> In Transit </th>
+        <td mat-cell *matCellDef="let element"> {{element.inTransit}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns();"></tr>
+</table>
