@@ -5,11 +5,12 @@
             <div class="target-container">
                 <p>Target: {{inventory.$targetVehicle()?.name}}</p>
                 <lib-inventory-table [isReadonly]="true" [tableData]="inventory.$targetVehicleComputed().inventory || []"
-                    [displayedColumns]="['name', 'quantity', 'target', 'after']" [afterValues]="inventory.$afterForTarget()"></lib-inventory-table>
+                    [displayedColumns]="['name', 'quantity', 'target', 'after']" [afterValues]="inventory.$afterForTarget()" [maxQty]="inventory.$exceedsMaxQty()"></lib-inventory-table>
             </div>
         } @else {
         <p>Loading Inventory...</p>
         }
+        <p>Status: {{this.inventory.$isTargetMet() ? 'Valid' : 'Invalid'}}</p>
     </div>
     <div [style.gridArea]="'side-top'" class="grid-item">
         @if (!inventory.$loading()) {
@@ -42,5 +43,6 @@
     </div>
     <div [style.gridArea]="'bottom-right'" class="grid-item">
         <p>{{store.$user()}}</p>
+        <p>{{inventory.$getInventoryByVehicle('Ford F-150') | json}}</p>
     </div>
 </lib-grid-layout>

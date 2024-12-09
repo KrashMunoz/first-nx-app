@@ -9,6 +9,7 @@ import {
 } from 'rxjs';
 import { createEffect } from 'src/create-effect';
 import {
+  compareMaps,
   groupInventories,
   mockVehicleData,
   removeNullOrZeroProperties,
@@ -33,6 +34,7 @@ export class InventoryStore {
     $fromInventories: signal<Record<string, InventoryPayloadMap>>({}),
     $inventoryPayload: signal<InventoryPayload | undefined>(undefined),
     $afterForTarget: signal<Record<string, number>>({}),
+    // $isTargetMet: signal<boolean>(false),
   } as const;
 
   public readonly $vehicles = this.state.$vehicles.asReadonly();
@@ -53,6 +55,26 @@ export class InventoryStore {
   }));
   public readonly $afterForTarget = this.state.$afterForTarget.asReadonly();
   public readonly $inventoryPayload = this.state.$inventoryPayload.asReadonly();
+  // NOTE: effect might not be a bad idea since it's triggered by user input
+  public readonly $isTargetMet = computed(() => {
+    const targetMap = this.state.$targetInventory();
+    const toMoveMap = this.state.$afterForTarget();
+    // console.log('isTargetMet =>', { targetMap, toMoveMap });
+    return compareMaps(targetMap, toMoveMap);
+  });
+
+  public readonly $exceedsMaxQty = computed(() => {
+    const maxQtyMap = this.$targetVehicle()?.inventory.reduce(
+      (acc: Record<string, number>, item) => {
+        acc[item.name] = item.maxQuantity;
+        return acc;
+      },
+      {}
+    );
+    // const toMoveMap = this.$afterForTarget();
+    // console.log({ maxQtyMap, toMoveMap });
+    return maxQtyMap || {};
+  });
 
   constructor() {
     this.loadVehicleData();
@@ -85,6 +107,19 @@ export class InventoryStore {
       })
     )
   );
+
+  public readonly $getInventoryByVehicle = (vehicleName: string) => {
+    return computed(() => {
+      const vehicle = this.state
+        .$vehicles()
+        .find((vehicle) => vehicle.name === vehicleName);
+      return vehicle?.inventory;
+    })();
+  };
+
+  // public readonly vehicleById = createEffect<string>((_) =>
+  //   _.pipe(tap((vehicleName) => {}))
+  // );
 
   // Update Quantity Count
   public readonly updateAfter = createEffect<InventoryChangeEvent>((_) =>

@@ -3,7 +3,10 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"> 
+            {{element.name}}
+            {{maxQty().hasOwnProperty(element.name) && afterValues()[element.name] > maxQty()[element.name] ? '*' : ''}}
+        </td>
     </ng-container>
     <!-- Type Column -->
     <ng-container matColumnDef="quantity">

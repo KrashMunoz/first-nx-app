@@ -1,4 +1,4 @@
-import { Component, input, InputSignal, output } from '@angular/core';
+import { Component, computed, input, InputSignal, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +22,10 @@ import { FormsModule } from '@angular/forms';
 export class InventoryTableComponent {
   isReadonly: InputSignal<boolean> = input<boolean>(false);
   tableData: InputSignal<InventoryItem[]> = input<InventoryItem[]>([]);
+  maxQty = input<Record<string, number>>({});
+  // exceedsMax = computed(() => {
+  //    &&
+  // })
   displayedColumns = input<string[]>([]);
   afterValues = input<Record<string, number>>({});
   formModel: Record<string, number> = {};

@@ -9,6 +9,7 @@ export type Vehicle = {
 export type InventoryItem = {
   name: string;
   quantity: number;
+  maxQuantity: number;
 };
 
 export const groupInventories = (
@@ -32,25 +33,26 @@ export const removeNullOrZeroProperties = (obj: Record<string, any>) => {
   );
 };
 
-// export function removeNullOrZeroRecursive(obj: any): any {
-//   return Object.fromEntries(
-//     Object.entries(obj)
-//       .map(([key, value]) => {
-//         // If the value is an object, recursively clean it
-//         if (value && typeof value === 'object') {
-//           value = removeNullOrZeroRecursive(value);
-//         }
+export function compareMaps(
+  targetMap: Record<string, number>,
+  toMoveMap: Record<string, number>
+) {
+  // Iterate over each property in targetMap
+  for (let key in targetMap) {
+    // Check if the property exists in toMoveMap
+    if (!toMoveMap.hasOwnProperty(key)) {
+      return false; // If the property doesn't exist in toMoveMap, return false
+    }
 
-//         // Only return the entry if the value is not null or 0
-//         if (value !== null && value !== 0) {
-//           return [key, value];
-//         }
+    // Check if the value in toMoveMap is greater than or equal to the value in targetMap
+    if (toMoveMap[key] < targetMap[key]) {
+      return false; // If the value in toMoveMap is smaller, return false
+    }
+  }
 
-//         return undefined;
-//       })
-//       .filter((entry): entry is [string, any] => entry !== undefined) // Remove any undefined values (for removed entries)
-//   );
-// }
+  // If all properties match the conditions, return true
+  return true;
+}
 
 export function removeNullOrZeroRecursive(obj: any): any {
   return Object.fromEntries(
@@ -85,10 +87,10 @@ export const mockVehicleData: Vehicle[] = [
     status: 'mint',
     inTransit: false,
     inventory: [
-      { name: 'Tires', quantity: 4 },
-      { name: 'Engine Oil', quantity: 5 },
-      { name: 'Spare Parts', quantity: 10 },
-      { name: 'Jet Fuel', quantity: 200 }, // Shared with Boeing 747
+      { name: 'Tires', quantity: 4, maxQuantity: 10 },
+      { name: 'Engine Oil', quantity: 5, maxQuantity: 15 },
+      { name: 'Spare Parts', quantity: 10, maxQuantity: 10 },
+      { name: 'Jet Fuel', quantity: 200, maxQuantity: 400 }, // Shared with Boeing 747
     ],
   },
   {
@@ -97,9 +99,9 @@ export const mockVehicleData: Vehicle[] = [
     status: 'degraded',
     inTransit: true,
     inventory: [
-      { name: 'Jet Fuel', quantity: 20000 }, // Shared with Ford F-150
-      { name: 'Air Filters', quantity: 50 },
-      { name: 'Tires', quantity: 6 }, // Shared with Ford F-150
+      { name: 'Jet Fuel', quantity: 20000, maxQuantity: 25000 }, // Shared with Ford F-150
+      { name: 'Air Filters', quantity: 50, maxQuantity: 60 },
+      { name: 'Tires', quantity: 6, maxQuantity: 10 }, // Shared with Ford F-150
     ],
   },
   {
@@ -108,9 +110,9 @@ export const mockVehicleData: Vehicle[] = [
     status: 'mint',
     inTransit: false,
     inventory: [
-      { name: 'Tires', quantity: 4 }, // Shared with Ford F-150 and Boeing 747
-      { name: 'Charging Cables', quantity: 2 },
-      { name: 'Brake Pads', quantity: 4 }, // Shared with Chevy Silverado
+      { name: 'Tires', quantity: 4, maxQuantity: 10 }, // Shared with Ford F-150 and Boeing 747
+      { name: 'Charging Cables', quantity: 2, maxQuantity: 10 },
+      { name: 'Brake Pads', quantity: 4, maxQuantity: 10 }, // Shared with Chevy Silverado
     ],
   },
   {
@@ -119,9 +121,9 @@ export const mockVehicleData: Vehicle[] = [
     status: 'destroyed',
     inTransit: false,
     inventory: [
-      { name: 'Life Jackets', quantity: 8 },
-      { name: 'Fuel', quantity: 500 },
-      { name: 'Tires', quantity: 2 }, // Shared with Tesla Model S and Boeing 747
+      { name: 'Life Jackets', quantity: 8, maxQuantity: 10 },
+      { name: 'Fuel', quantity: 500, maxQuantity: 500 },
+      { name: 'Tires', quantity: 2, maxQuantity: 5 }, // Shared with Tesla Model S and Boeing 747
     ],
   },
   {
@@ -130,10 +132,10 @@ export const mockVehicleData: Vehicle[] = [
     status: 'degraded',
     inTransit: true,
     inventory: [
-      { name: 'Brake Pads', quantity: 10 }, // Shared with Tesla Model S
-      { name: 'Coolant', quantity: 5 },
-      { name: 'Towing Hitch', quantity: 1 },
-      { name: 'Tires', quantity: 6 }, // Shared with Tesla Model S
+      { name: 'Brake Pads', quantity: 10, maxQuantity: 10 }, // Shared with Tesla Model S
+      { name: 'Coolant', quantity: 5, maxQuantity: 10 },
+      { name: 'Towing Hitch', quantity: 1, maxQuantity: 4 },
+      { name: 'Tires', quantity: 6, maxQuantity: 10 }, // Shared with Tesla Model S
     ],
   },
 ];

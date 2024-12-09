@@ -43,5 +43,7 @@ export class VehicleTableComponent {
     }
     const cleanInventoryMap = removeNullOrZeroRecursive(this.inventoryMap);
     this.inventory.vehicleEvent(cleanInventoryMap);
+    console.log('isTargetMet', this.inventory.$isTargetMet());
+    console.log('exceedsMaxQty', this.inventory.$exceedsMaxQty());
   }
 }
