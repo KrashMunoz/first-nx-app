@@ -11,6 +11,24 @@ export type InventoryItem = {
   quantity: number;
   maxQuantity: number;
 };
+export const sortRowsByName = (
+  rows: InventoryItem[],
+  referenceObj: Record<string, number>
+) => {
+  return rows.sort((a, b) => {
+    // Check if name exists in the reference object
+    const aExists = referenceObj.hasOwnProperty(a.name);
+    const bExists = referenceObj.hasOwnProperty(b.name);
+
+    // If a and b both exist or both don't exist, maintain original order
+    if (aExists === bExists) {
+      return 0;
+    }
+
+    // Otherwise, prioritize the row that exists in the reference object
+    return aExists ? -1 : 1;
+  });
+};
 
 export const groupInventories = (
   acc: Record<string, number>,
