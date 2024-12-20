@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { InventoryItem, Vehicle } from '../vehicle-table/model';
+import { InventoryItem, sortRowsByName, Vehicle } from '../vehicle-table/model';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -22,6 +22,9 @@ import { FormsModule } from '@angular/forms';
 export class InventoryTableComponent {
   isReadonly: InputSignal<boolean> = input<boolean>(false);
   tableData: InputSignal<InventoryItem[]> = input<InventoryItem[]>([]);
+  sortedTableData = computed(() =>
+    sortRowsByName(this.tableData(), this.maxQty())
+  );
   maxQty = input<Record<string, number>>({});
   // exceedsMax = computed(() => {
   //    &&

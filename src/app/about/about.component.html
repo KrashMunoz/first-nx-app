@@ -4,8 +4,13 @@
         @if (!inventory.$loading() && !!inventory.$targetVehicle()) {
             <div class="target-container">
                 <p>Target: {{inventory.$targetVehicle()?.name}}</p>
-                <lib-inventory-table [isReadonly]="true" [tableData]="inventory.$targetVehicleComputed().inventory || []"
-                    [displayedColumns]="['name', 'quantity', 'target', 'after']" [afterValues]="inventory.$afterForTarget()" [maxQty]="inventory.$exceedsMaxQty()"></lib-inventory-table>
+                <lib-inventory-table 
+                    [isReadonly]="true" 
+                    [tableData]="inventory.$targetVehicleComputed().inventory || []"
+                    [displayedColumns]="['name', 'quantity', 'target', 'after']" 
+                    [afterValues]="inventory.$afterForTarget()" 
+                    [maxQty]="inventory.$exceedsMaxQty()">
+                </lib-inventory-table>
             </div>
         } @else {
         <p>Loading Inventory...</p>
@@ -16,8 +21,11 @@
         @if (!inventory.$loading()) {
             <div class="vehicle-container">
                 <p>All Vehicles:</p>
-                <lib-vehicle-table [isReadonly]="true" [tableData]="inventory.$vehicles()"
-                    [displayedColumns]="['name', 'type', 'status', 'inTransit']"></lib-vehicle-table>
+                <lib-vehicle-table 
+                    [isReadonly]="true" 
+                    [tableData]="inventory.$vehicles()"
+                    [displayedColumns]="['name', 'type', 'status', 'inTransit']">
+                </lib-vehicle-table>
             </div>
         } @else {
             <span>

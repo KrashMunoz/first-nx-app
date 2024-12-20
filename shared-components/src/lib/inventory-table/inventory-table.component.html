@@ -1,5 +1,5 @@
 <!-- {{tableData() | json}} -->
-<table mat-table [dataSource]="tableData()">
+<table mat-table [dataSource]="isReadonly() ? tableData() : sortedTableData()">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -63,5 +63,9 @@
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns();"></tr>
+    <tr mat-row
+        *matRowDef="let row; columns: displayedColumns();"
+        [class.highlighted]="!isReadonly() && maxQty().hasOwnProperty(row.name)"
+        [class.error]="isReadonly() && row.quantity < row.target && afterValues()[row.name] !== row.target">
+    </tr>
 </table>

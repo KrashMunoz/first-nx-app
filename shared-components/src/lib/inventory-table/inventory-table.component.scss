@@ -5,4 +5,12 @@ table {
         width: 60px;
         margin: 0;
     }
+
+    .highlighted {
+        background-color: aqua;
+    }
+
+    .error {
+        background-color: orange;
+    }
 }

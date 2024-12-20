@@ -5,8 +5,12 @@
             <mat-panel-title> {{vehicle.name}} </mat-panel-title>
             <mat-panel-description> {{vehicle.type}} - {{vehicle.status}} </mat-panel-description>
         </mat-expansion-panel-header>
-        <lib-inventory-table [tableData]="vehicle.inventory" [displayedColumns]="writeColumns"
-            (modelChanged)="handleInventoryEvent(vehicle.name, $event)"></lib-inventory-table>
+        <lib-inventory-table 
+            [tableData]="vehicle.inventory" 
+            [displayedColumns]="writeColumns"
+            [maxQty]="inventory.$exceedsMaxQty()"
+            (modelChanged)="handleInventoryEvent(vehicle.name, $event)">
+        </lib-inventory-table>
     </mat-expansion-panel>
     }
 </mat-accordion>
