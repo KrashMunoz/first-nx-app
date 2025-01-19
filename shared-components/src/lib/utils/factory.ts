@@ -1,17 +1,29 @@
 import { EventParamsBuilder, EventProdParamsBuilder, EventReceiverParamsBuilder, GqlParamsBuilder } from "./builder";
 
+export enum ParamsBuilderEnum {
+    FIRST,
+    SECOND,
+    THIRD
+}
+export type ParamsBuilderType = ParamsBuilderEnum;
+
 /**
  * Creating a factory by passing in different values when instantiating classes
  */
 export class ParamsFactory {
-    createBuilder(defaultValues: string): GqlParamsBuilder {
-        if (defaultValues === 'basic') {
-            return new GqlParamsBuilder([], [], [], [{ key: 'IsBasic', value: true }])
+    createBuilder(type: ParamsBuilderEnum): GqlParamsBuilder {
+        const primaryKeys = [];
+        switch (type) {
+            case ParamsBuilderEnum.FIRST:
+                primaryKeys.push('FIRST')
+                return new GqlParamsBuilder(primaryKeys, [], [], [{ key: 'isFirst', value: true }]);
+            case ParamsBuilderEnum.SECOND:
+                primaryKeys.push('SECOND')
+                return new GqlParamsBuilder(primaryKeys, [], [], [{ key: 'isFirst', value: false }]);
+            case ParamsBuilderEnum.THIRD:
+                primaryKeys.push('THIRD')
+                return new GqlParamsBuilder(primaryKeys, [{ key: 'ObjectName', value: "Object1" }], [{ key: 'ObjectID', value: 1 }], []);
         }
-        if (defaultValues === 'advanced') {
-            return new GqlParamsBuilder(['ObjectID'], [{ key: 'ObjectName', value: "Object1" }], [{ key: 'ObjectID', value: 1 }], [])
-        }
-        return new GqlParamsBuilder([], [], [], []);
     }
 }
 

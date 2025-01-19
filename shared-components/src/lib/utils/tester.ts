@@ -1,5 +1,5 @@
 import { EventParamsBuilder, EventProdParamsBuilder, EventReceiverParamsBuilder, GqlParamsBuilder } from "./builder";
-import { EventParamsFactory, ParamsFactory } from "./factory";
+import { EventParamsFactory, ParamsBuilderEnum, ParamsFactory } from "./factory";
 
 /**
  * Facade for Parameter Factory and Builders
@@ -12,9 +12,9 @@ class ParamsFacade {
 
     constructor() {
         this.factory = new ParamsFactory();
-        this.defaultBuilder = this.factory.createBuilder('default');
-        this.basic = this.factory.createBuilder('basic');
-        this.advanced = this.factory.createBuilder('advanced');
+        this.defaultBuilder = this.factory.createBuilder(ParamsBuilderEnum.FIRST);
+        this.basic = this.factory.createBuilder(ParamsBuilderEnum.SECOND);
+        this.advanced = this.factory.createBuilder(ParamsBuilderEnum.THIRD);
     }
 
     /**
