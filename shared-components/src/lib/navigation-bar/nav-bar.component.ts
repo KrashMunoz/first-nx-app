@@ -23,6 +23,10 @@ export class NavBarComponent {
       label: 'more',
       value: '/more'
     },
+    {
+      label: 'showcase',
+      value: '/showcase'
+    },
   ]
 
   title = input.required();

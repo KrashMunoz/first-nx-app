@@ -27,7 +27,7 @@ export class TestStoreService {
       // concatMap(() => {
       //   insert service method here??
       // })
-      tap(() => {})
+      tap(() => { })
     )
   );
 
