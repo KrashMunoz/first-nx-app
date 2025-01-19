@@ -2,7 +2,7 @@ import { computed, Injectable, signal } from '@angular/core';
 import type { Item } from '../types';
 // import { getRandomItems } from "../rnd";
 import { createEffect } from '../create-effect';
-import { concatMap, exhaustMap, finalize, tap, timer } from 'rxjs';
+import { concatMap, exhaustMap, finalize, interval, switchMap, tap, timer } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AppStore {
@@ -28,6 +28,8 @@ export class AppStore {
   generateAll() {
     this.generateA();
     this.generateB();
+    // this.pollingC();
+    // this.pollingD();
   }
 
   private generateA = createEffect((_) =>
@@ -53,4 +55,16 @@ export class AppStore {
       })
     )
   );
+
+  private pollingC = createEffect((_) => _.pipe(
+    switchMap(() => interval(3000).pipe(
+      tap(() => console.log('polling C...'))
+    ))
+  ))
+
+  private pollingD = createEffect((_) => _.pipe(
+    switchMap(() => interval(3000).pipe(
+      tap(() => console.log('polling D...'))
+    ))
+  ))
 }

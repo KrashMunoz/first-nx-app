@@ -8,3 +8,6 @@ export * from './lib/inventory-table/inventory-table.component';
 export * from './lib/vehicle-table/vehicle-table.component';
 export * from './lib/vehicle-table/model';
 export * from './lib/vehicle-table/inventory.store';
+export * from './lib/utils/builder';
+export * from './lib/utils/factory';
+export * from './lib/utils/tester';

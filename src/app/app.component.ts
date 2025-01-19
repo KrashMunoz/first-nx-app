@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NavBarComponent } from '@myngapp/shared-components';
+import { NavBarComponent, testerFn } from '@myngapp/shared-components';
 import { Store } from '@ngrx/store';
 import { usersFeature } from './user.reducer';
 import { TestStoreService } from './services/test-store/test-store.service';
+import { AppStore } from './app.store';
 
 @Component({
   standalone: true,
-  providers: [TestStoreService],
+  providers: [TestStoreService, AppStore],
   imports: [RouterModule, NavBarComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,7 +17,7 @@ import { TestStoreService } from './services/test-store/test-store.service';
 export class AppComponent {
   title = 'myngapp';
 
-  constructor(private store: Store) {
+  constructor(private store: Store, appStore: AppStore) {
     this.store.select(usersFeature.selectUsersState).subscribe({
       next: (users) => {
         // console.log('Getting User State...');
@@ -24,5 +25,6 @@ export class AppComponent {
       },
       error: (err) => console.error(err),
     });
+    testerFn();
   }
 }
