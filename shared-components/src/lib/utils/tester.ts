@@ -6,30 +6,28 @@ import { EventParamsFactory, ParamsBuilderEnum, ParamsFactory } from "./factory"
  */
 class ParamsFacade {
     public factory: ParamsFactory;
-    public defaultBuilder: GqlParamsBuilder;
-    public basic: GqlParamsBuilder;
-    public advanced: GqlParamsBuilder;
+    public first: GqlParamsBuilder;
+    public second: GqlParamsBuilder;
+    public third: GqlParamsBuilder;
 
     constructor() {
         this.factory = new ParamsFactory();
-        this.defaultBuilder = this.factory.createBuilder(ParamsBuilderEnum.FIRST);
-        this.basic = this.factory.createBuilder(ParamsBuilderEnum.SECOND);
-        this.advanced = this.factory.createBuilder(ParamsBuilderEnum.THIRD);
+        this.first = this.factory.createBuilder(ParamsBuilderEnum.FIRST);
+        this.second = this.factory.createBuilder(ParamsBuilderEnum.SECOND);
+        this.third = this.factory.createBuilder(ParamsBuilderEnum.THIRD);
     }
 
     /**
      * Log Param Builders
      */
     testParams() {
-        this.basic
+        this.second
             .addString('Name', 'Krash')
             .addString('Description', 'The best description ever.')
             .addInteger('ID', 1);
 
         console.log({
-            basicBuilder: this.basic,
-            advancedBuilder: this.advanced,
-            defaultBuilder: this.defaultBuilder
+            ...this
         });
 
     }

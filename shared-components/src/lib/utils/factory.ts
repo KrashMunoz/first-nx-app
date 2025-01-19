@@ -1,28 +1,35 @@
-import { EventParamsBuilder, EventProdParamsBuilder, EventReceiverParamsBuilder, GqlParamsBuilder } from "./builder";
+import { BooleanEntryInput, EventParamsBuilder, EventProdParamsBuilder, EventReceiverParamsBuilder, GqlParamsBuilder, IntegerEntryInput, StringEntryInput } from "./builder";
 
 export enum ParamsBuilderEnum {
     FIRST,
     SECOND,
     THIRD
 }
-export type ParamsBuilderType = ParamsBuilderEnum;
 
 /**
  * Creating a factory by passing in different values when instantiating classes
  */
 export class ParamsFactory {
     createBuilder(type: ParamsBuilderEnum): GqlParamsBuilder {
-        const primaryKeys = [];
+        const primaryKeys: string[] = [];
+        const strings: StringEntryInput[] = [];
+        const integers: IntegerEntryInput[] = [];
+        const booleans: BooleanEntryInput[] = [];
+
         switch (type) {
             case ParamsBuilderEnum.FIRST:
-                primaryKeys.push('FIRST')
-                return new GqlParamsBuilder(primaryKeys, [], [], [{ key: 'isFirst', value: true }]);
+                primaryKeys.push('FIRST');
+                booleans.push({ key: 'isFirst', value: true });
+                return new GqlParamsBuilder(primaryKeys, strings, integers, booleans);
             case ParamsBuilderEnum.SECOND:
-                primaryKeys.push('SECOND')
-                return new GqlParamsBuilder(primaryKeys, [], [], [{ key: 'isFirst', value: false }]);
+                primaryKeys.push('SECOND');
+                booleans.push({ key: 'isFirst', value: false });
+                return new GqlParamsBuilder(primaryKeys, strings, integers, booleans);
             case ParamsBuilderEnum.THIRD:
-                primaryKeys.push('THIRD')
-                return new GqlParamsBuilder(primaryKeys, [{ key: 'ObjectName', value: "Object1" }], [{ key: 'ObjectID', value: 1 }], []);
+                primaryKeys.push('THIRD');
+                strings.push({ key: 'ObjectName', value: "Object1" });
+                integers.push({ key: 'ObjectID', value: 1 });
+                return new GqlParamsBuilder(primaryKeys, strings, integers, booleans);
         }
     }
 }
