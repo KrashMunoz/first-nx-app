@@ -154,7 +154,7 @@ export class Graph<T> {
     displayGraph(): string {
         let graph = '';
         for (let [vertex, neighbors] of this.adjacencyList) {
-            let str = `Start${vertex} -> ${neighbors.join(', ')}`;
+            let str = `${vertex} -> ${neighbors.join(', ')}`;
             console.log(str);
             graph += str;
         }
