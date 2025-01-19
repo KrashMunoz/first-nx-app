@@ -90,6 +90,11 @@ export class EventParamsBuilder extends GqlParamsBuilder implements ExtendedBuil
         return this.addStrings(strings);
     }
 
+    /**
+     * Add Event ID
+     * @param {string} id 
+     * @returns {EventParamsBuilder}
+     */
     public addID(id: number): this {
         const integers = [
             {
@@ -131,6 +136,11 @@ export class EventProdParamsBuilder extends GqlParamsBuilder implements Extended
         return this.addStrings(strings);
     }
 
+    /**
+     * Add Event Producer ID
+     * @param {number} id 
+     * @returns {EventProdParamsBuilder}
+     */
     public addID(id: number): this {
         const integers = [
             {
@@ -152,6 +162,11 @@ export class EventReceiverParamsBuilder extends GqlParamsBuilder implements Exte
         super(primaryKeys, [], [], [])
     }
 
+    /**
+     * Add Event Receiver name
+     * @param {string} name 
+     * @returns {EventReceiverParamsBuilder}
+     */
     public addName(name: string): this {
         const strings = [
             {
@@ -166,6 +181,11 @@ export class EventReceiverParamsBuilder extends GqlParamsBuilder implements Exte
         return this.addStrings(strings)
     }
 
+    /**
+     * Add Event Receiver ID
+     * @param {number} id 
+     * @returns {EventReceiverParamsBuilder}
+     */
     public addID(id: number): this {
         const integers = [
             {
