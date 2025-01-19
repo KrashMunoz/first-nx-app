@@ -160,6 +160,29 @@ export class Graph<T> {
         }
         return graph;
     }
+
+    /**
+     * Returns an array with all edges in the graph
+     * @returns 
+     */
+    getAllEdges(): IEdgeDef<T>[] {
+        let edges = [];
+        this.adjacencyList.entries()
+        for (let [vertex, neighbors] of this.adjacencyList) {
+            for (let destination of neighbors) {
+                edges.push({
+                    from: vertex,
+                    end: destination
+                })
+            }
+        }
+        return edges;
+    }
+}
+
+export interface IEdgeDef<T> {
+    from: T,
+    end: T
 }
 
 /**
@@ -180,6 +203,9 @@ export const graphTest1 = () => {
     graph.addEdge("A", "C");
     graph.addEdge("B", "D");
     graph.addEdge("C", "D");
+
+    // Log Edges
+    console.log("All Graph Edges:", graph.getAllEdges())
 
     // Perform searches
     console.log("DFS starting from A:", graph.depthFirstSearch("A")); // Output: ["A", "B", "D", "C"]

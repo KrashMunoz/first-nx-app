@@ -1,6 +1,6 @@
 import { Component, computed, effect, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Graph } from '@myngapp/shared-components';
+import { Graph, graphTest1 } from '@myngapp/shared-components';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -32,6 +32,7 @@ export class GialloComponent {
   constructor() {
     this.graph = new Graph<string>();
     this.metadata = new Map<string, IMetadata>();
+    graphTest1();
   }
 
   public addVertex() {
