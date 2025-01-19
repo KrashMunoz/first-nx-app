@@ -25,11 +25,8 @@ class ParamsFacade {
             .addString('Name', 'Krash')
             .addString('Description', 'The best description ever.')
             .addInteger('ID', 1);
-
-        console.log({
-            ...this
-        });
-
+        const { factory, ...paramObjects } = this;
+        console.log(paramObjects);
     }
 }
 
