@@ -76,7 +76,7 @@ class EventFacade {
 /**
  * Function to test all design patterns
  */
-export const testerFn = () => {
+export const testerFn = (): void => {
     // Instantiate Systems
     const paramsFacade = new ParamsFacade();
     const eventFacade = new EventFacade();
