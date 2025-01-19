@@ -158,7 +158,7 @@ export class EventProdParamsBuilder extends GqlParamsBuilder implements Extended
 
 export class EventReceiverParamsBuilder extends GqlParamsBuilder implements ExtendedBuilder {
     constructor() {
-        const primaryKeys = ['EventReceiver']
+        const primaryKeys = ['EventReceiverID']
         super(primaryKeys, [], [], [])
     }
 

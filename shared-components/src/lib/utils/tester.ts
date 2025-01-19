@@ -59,12 +59,8 @@ class EventFacade {
         this.eventReceiver
             .addID(1)
             .addName('EventReceiver1');
-
-        console.log({
-            event: this.event,
-            eventProducer: this.eventProducer,
-            eventReceiver: this.eventReceiver
-        });
+        const { eventFactory, ...eventData } = this;
+        console.log(eventData);
     }
 }
 
