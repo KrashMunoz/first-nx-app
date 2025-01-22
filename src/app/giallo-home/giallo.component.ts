@@ -32,7 +32,7 @@ export class GialloComponent {
   constructor() {
     this.graph = new Graph<string>();
     this.metadata = new Map<string, IMetadata>();
-    graphTest1();
+    // graphTest1();
   }
 
   public addVertex() {
