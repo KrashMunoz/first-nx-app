@@ -1,3 +1,26 @@
+import { AdaptedType, adaptType } from "./resolver";
+import { DomainType } from "./test-data";
+
+export interface StringEntryInput {
+    key: string;
+    value: string;
+}
+
+export interface IntegerEntryInput {
+    key: string;
+    value: number;
+}
+
+export interface BooleanEntryInput {
+    key: string;
+    value: boolean;
+}
+
+export interface ExtendedBuilder extends GqlParamsBuilder {
+    addName(name: string): this;
+    addID(id: number): this;
+}
+
 export class GqlParamsBuilder {
     constructor(
         public primaryKeys: string[],
@@ -43,25 +66,52 @@ export class GqlParamsBuilder {
     }
 }
 
+/**
+ * Dynamic Params Builder with High order function
+ * @todo consider using composition instead of inheritance
+ */
+type Callback = (data: any) => void;
+/** Dynamic Params Builder @extends {GqlParamsBuilder} */
+export class DynamicParamsBuilder extends GqlParamsBuilder {
+    constructor(domainType: DomainType) {
+        // const primaryKeys: string[] = [];
+        const strings: StringEntryInput[] = [];
+        const integers: IntegerEntryInput[] = [];
+        const booleans: BooleanEntryInput[] = [];
 
-export interface StringEntryInput {
-    key: string;
-    value: string;
-}
+        const { type, attributes } = domainType;
+        const adaptedType: AdaptedType = attributes.reduce(adaptType, {
+            primaryKey: '',
+            stringAttributes: [],
+            integerAttributes: []
+        } as AdaptedType);
+        const { primaryKey, stringAttributes, integerAttributes } = adaptedType;
+        super([primaryKey], [], [], [])
+    }
 
-export interface IntegerEntryInput {
-    key: string;
-    value: number;
-}
+    /**
+     * Add Name
+     * @method adds name based on dynamic type
+     * @param callback 
+     * @param input 
+     * @returns 
+     */
+    public addName(callback: Callback, input: any): this {
+        callback(input);
+        return this;
+    }
 
-export interface BooleanEntryInput {
-    key: string;
-    value: boolean;
-}
-
-export interface ExtendedBuilder extends GqlParamsBuilder {
-    addName(name: string): this;
-    addID(id: number): this;
+    /**
+     * Add ID
+     * @method adds id based on dynamic type
+     * @param callback 
+     * @param input 
+     * @returns 
+     */
+    public addID(callback: Callback, input: any): this {
+        callback(input);
+        return this;
+    }
 }
 
 // Experimenting with Domain Specific Stuff

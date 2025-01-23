@@ -1,5 +1,6 @@
 import { EventParamsBuilder, EventProdParamsBuilder, EventReceiverParamsBuilder, GqlParamsBuilder } from "./builder";
 import { EventParamsFactory, ParamsBuilderEnum, ParamsFactory } from "./factory";
+import { GqlParamsResolver } from "./resolver";
 
 /**
  * Facade for Parameter Factory and Builders
@@ -49,7 +50,7 @@ class EventFacade {
     /**
      * Log Event Builders
      */
-    testEvents() {
+    public testEvents(): void {
         this.event
             .addID(1)
             .addName('Event1');
@@ -61,6 +62,10 @@ class EventFacade {
             .addName('EventReceiver1');
         const { eventFactory, ...eventData } = this;
         console.log(eventData);
+    }
+
+    public testResolver(): void {
+        const callResolver = new GqlParamsResolver(this.eventProducer);
     }
 }
 
@@ -74,4 +79,5 @@ export const testerFn = (): void => {
     // Log Data
     paramsFacade.testParams();
     eventFacade.testEvents();
+    eventFacade.testResolver();
 }

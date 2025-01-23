@@ -11,3 +11,4 @@ export * from './lib/vehicle-table/inventory.store';
 export * from './lib/utils/builder';
 export * from './lib/utils/factory';
 export * from './lib/utils/tester';
+export * from './lib/utils/graph';
