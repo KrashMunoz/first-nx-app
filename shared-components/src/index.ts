@@ -12,3 +12,6 @@ export * from './lib/utils/builder';
 export * from './lib/utils/factory';
 export * from './lib/utils/tester';
 export * from './lib/utils/graph';
+export * from './lib/todos/todo-list/todo-list.component';
+export * from './lib/todos/todo-map/todo-map.component';
+export * from './lib/todos/todo-table/todo-table.component';
