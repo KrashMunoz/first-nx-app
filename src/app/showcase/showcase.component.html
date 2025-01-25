@@ -1,13 +1,23 @@
-<lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
-    [templateAreas]="templateAreas">
-
-    <div class="grid-item" [style.gridArea]="'left-sidebar'">
-        <span>Sidebar</span>
+<lib-grid-layout
+  [columns]="'repeat(6, minmax(100px, 1fr))'"
+  [rows]="'repeat(4, 1fr)'"
+  [gap]="'20px'"
+  [templateAreas]="templateAreas">
+  <div class="grid-item" [style.gridArea]="'left-sidebar'">
+    <div id="tasks-container">
+      <h1>Todos</h1>
+      <button mat-raised-button (click)="openDialog()">Open Dialog</button>
+      <mat-list>
+        @for (todo of todos; track todo) {
+        <mat-list-item>{{ todo }}</mat-list-item>
+        }
+      </mat-list>
     </div>
-    <div class="grid-item" [style.gridArea]="'map'">
-        <span>Map / Graph</span>
-    </div>
-    <div class="grid-item" [style.gridArea]="'table'">
-        <span>Table</span>
-    </div>
+  </div>
+  <div class="grid-item" [style.gridArea]="'map'">
+    <span>Map / Graph</span>
+  </div>
+  <div class="grid-item" [style.gridArea]="'table'">
+    <span>Table</span>
+  </div>
 </lib-grid-layout>

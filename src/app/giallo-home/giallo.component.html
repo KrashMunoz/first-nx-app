@@ -1,65 +1,72 @@
 <div class="wrapper">
-    <h1 id="giallo-header">Giallo!</h1>
-    <h2 id="giallo-header-2">Subheader</h2>
-    <p id="giallo-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-        anim id est laborum.</p>
-    <hr />
-    <div>
-        <label for="id">ID</label>
-        <input id="id" type="text" [(ngModel)]="vertexID">
-    </div>
-    <div>
-        <label for="label">Label</label>
-        <input id="label" type="text" [(ngModel)]="vertexLabel">
-    </div>
-    <div>
-        <label for="weight">Weight</label>
-        <input id="weight" type="number" [(ngModel)]="vertexWeight">
-    </div>
-    <button (click)="addVertex()">Add Vertex</button>
-    <hr />
-    <div>
-        <label for="from">From</label>
-        <select id="from" type="text" [(ngModel)]="edgeFrom" (ngModelChange)="filterOptions('to', $event)">
-            @for (option of fromVertices; track $index) {
-            <option [value]="option">{{option}}</option>
-            }
-        </select>
-    </div>
-    <div>
-        <label for="to">To</label>
-        <select id="to" type="text" [(ngModel)]="edgeTo">
-            @for (option of toVertices; track $index) {
-            <option [value]="option">{{option}}</option>
-            }
-        </select>
-    </div>
-    <button (click)="addEdge()">Add Edge</button>
-    <hr />
-    <code>
-        <!-- <h1>Vertices:</h1>
+  <h1 id="giallo-header">Giallo!</h1>
+  <h2 id="giallo-header-2">Subheader</h2>
+  <p id="giallo-text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+  <hr />
+  <div>
+    <label for="id">ID</label>
+    <input id="id" type="text" [(ngModel)]="vertexID" />
+  </div>
+  <div>
+    <label for="label">Label</label>
+    <input id="label" type="text" [(ngModel)]="vertexLabel" />
+  </div>
+  <div>
+    <label for="weight">Weight</label>
+    <input id="weight" type="number" [(ngModel)]="vertexWeight" />
+  </div>
+  <button (click)="addVertex()">Add Vertex</button>
+  <hr />
+  <div>
+    <label for="from">From</label>
+    <select
+      id="from"
+      type="text"
+      [(ngModel)]="edgeFrom"
+      (ngModelChange)="filterOptions('to', $event)">
+      @for (option of fromVertices; track $index) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
+  <div>
+    <label for="to">To</label>
+    <select id="to" type="text" [(ngModel)]="edgeTo">
+      @for (option of toVertices; track $index) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
+  <button (click)="addEdge()">Add Edge</button>
+  <hr />
+  <code>
+    <!-- <h1>Vertices:</h1>
         <span>{{allVertices()}}</span> -->
-        <h1>Graph:</h1>
-        <span>{{displayGraph$()}}</span>
-        <h1>Metadata:</h1>
-        <table>
-            <thead>
-                <th>ID</th>
-                <th>Label</th>
-                <th>Weight</th>
-            </thead>
-            <tbody>
-                @for(option of metadata$(); track option) {
-                    <tr>
-                        <td>{{option[0]}}</td>
-                        <td>{{option[1]?.label}}</td>
-                        <td>{{option[1]?.weight}}</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </code>
+    <h1>Graph:</h1>
+    <span>{{ displayGraph$() }}</span>
+    <h1>Metadata:</h1>
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Label</th>
+        <th>Weight</th>
+      </thead>
+      <tbody>
+        @for(option of metadata$(); track option) {
+        <tr>
+          <td>{{ option[0] }}</td>
+          <td>{{ option[1]?.label }}</td>
+          <td>{{ option[1]?.weight }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </code>
 </div>
