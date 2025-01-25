@@ -1,1 +1,5 @@
-<p>todo-list works!</p>
+<mat-list>
+  @for (todo of todoList(); track todo) {
+  <mat-list-item>{{ todo }}</mat-list-item>
+  }
+</mat-list>

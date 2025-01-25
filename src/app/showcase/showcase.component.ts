@@ -1,6 +1,9 @@
 import { Component, inject, model, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GridLayoutComponent } from '@myngapp/shared-components';
+import {
+  GridLayoutComponent,
+  TodoListComponent,
+} from '@myngapp/shared-components';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,6 +38,7 @@ import {
     MatInputModule,
     FormsModule,
     MatButtonModule,
+    TodoListComponent,
   ],
   providers: [ShowcaseStore],
   templateUrl: './showcase.component.html',

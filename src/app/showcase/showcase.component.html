@@ -7,11 +7,7 @@
     <div id="tasks-container">
       <h1>Todos</h1>
       <button mat-raised-button (click)="openDialog()">Open Dialog</button>
-      <mat-list>
-        @for (todo of todos; track todo) {
-        <mat-list-item>{{ todo }}</mat-list-item>
-        }
-      </mat-list>
+      <lib-todo-list [todoList]="todos" />
     </div>
   </div>
   <div class="grid-item" [style.gridArea]="'map'">
