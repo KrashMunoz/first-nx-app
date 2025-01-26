@@ -45,6 +45,7 @@ import {
   provideNativeDateAdapter,
 } from '@angular/material/core';
 import { TodoTableComponent } from '../../../shared-components/src/lib/todos/todo-table/todo-table.component';
+import { TodoMapComponent } from '../../../shared-components/src/lib/todos/todo-map/todo-map.component';
 @Component({
   selector: 'app-showcase',
   standalone: true,
@@ -63,6 +64,7 @@ import { TodoTableComponent } from '../../../shared-components/src/lib/todos/tod
     MatButtonModule,
     TodoListComponent,
     TodoTableComponent,
+    TodoMapComponent,
   ],
   providers: [ShowcaseStore],
   templateUrl: './showcase.component.html',

@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="grid-item" [style.gridArea]="'map'">
-    <span>Map / Graph</span>
+    <lib-todo-map [todoList]="todos()" />
   </div>
   <div class="grid-item" [style.gridArea]="'table'">
     <lib-todo-table [todoList]="todos()" />

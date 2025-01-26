@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ITodo } from '../model/todo.model';
 
 @Component({
   selector: 'lib-todo-map',
@@ -8,4 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './todo-map.component.html',
   styleUrl: './todo-map.component.scss',
 })
-export class TodoMapComponent {}
+export class TodoMapComponent {
+  todoList = input<ITodo[]>([]);
+}
