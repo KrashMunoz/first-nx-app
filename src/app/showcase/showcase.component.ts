@@ -6,6 +6,9 @@ import {
   todoCategoryList,
   TodoListComponent,
   TodoStore,
+  TodoTime,
+  todoTimeList,
+  todoWeightList,
 } from '@myngapp/shared-components';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +27,13 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MAT_DATE_FORMATS,
+  MAT_NATIVE_DATE_FORMATS,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
 @Component({
   selector: 'app-showcase',
   standalone: true,
@@ -101,19 +110,35 @@ export interface DialogData {
       </mat-form-field>
       <mat-form-field>
         <mat-label>Category</mat-label>
-        <input matInput [(ngModel)]="category" />
+        <mat-select [(ngModel)]="category">
+          @for (category of categoryOptions; track category) {
+          <mat-option [value]="category">{{ category }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Due Date</mat-label>
-        <input matInput [(ngModel)]="dueDate" />
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dueDate" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Weight</mat-label>
-        <input matInput [(ngModel)]="weight" />
+        <mat-select [(ngModel)]="weight">
+          @for (weight of weightOptions; track weight) {
+          <mat-option [value]="weight">{{ weight }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>timeEstimate</mat-label>
-        <input matInput [(ngModel)]="timeEstimate" />
+        <mat-label>Time Estimate</mat-label>
+        <mat-select [(ngModel)]="timeEstimate">
+          @for (time of timeEstimateOptions; track time) {
+          <mat-option [value]="time.key">{{ time.label }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
@@ -133,6 +158,12 @@ export interface DialogData {
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    MatSelectModule,
+    MatDatepickerModule,
+  ],
+  providers: [
+    provideNativeDateAdapter(),
+    { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS },
   ],
 })
 export class DialogOverviewExampleDialog {
@@ -144,11 +175,40 @@ export class DialogOverviewExampleDialog {
   readonly title = model('');
   readonly description = model('');
   readonly category = model(undefined);
-  readonly dueDate = model(new Date().toLocaleString('en-US'));
+  readonly categoryOptions = todoCategoryList;
+  readonly dueDate = model(new Date());
   readonly weight = model(undefined);
+  readonly weightOptions = todoWeightList;
   readonly timeEstimate = model(undefined);
+  readonly timeEstimateOptions = todoTimeList.map((time) => ({
+    key: time,
+    label: this.castTimeLabel(time),
+  }));
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  private castTimeLabel(timeOption: TodoTime): string {
+    let label: string;
+    switch (timeOption) {
+      case 0.5:
+        label = '30 mins';
+        break;
+      case 1:
+        label = '1 hr';
+        break;
+      case 3:
+        label = '3 hrs';
+        break;
+      case 8:
+        label = '1 day';
+        break;
+      default:
+        console.error('castTimeLabel Error: Invalid TodoTime option');
+        label = '';
+        break;
+    }
+    return label;
   }
 }
