@@ -15,3 +15,5 @@ export * from './lib/utils/graph';
 export * from './lib/todos/todo-list/todo-list.component';
 export * from './lib/todos/todo-map/todo-map.component';
 export * from './lib/todos/todo-table/todo-table.component';
+export * from './lib/todos/model/todo.model';
+export * from './lib/todos/model/todo.state';
