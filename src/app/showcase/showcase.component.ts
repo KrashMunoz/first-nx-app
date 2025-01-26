@@ -1,13 +1,23 @@
-import { Component, inject, model, Signal, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  model,
+  ModelSignal,
+  Signal,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   GridLayoutComponent,
   ITodo,
+  Todo,
+  TodoCategory,
   todoCategoryList,
   TodoListComponent,
   TodoStore,
   TodoTime,
   todoTimeList,
+  TodoWeight,
   todoWeightList,
 } from '@myngapp/shared-components';
 import { FormsModule } from '@angular/forms';
@@ -34,6 +44,7 @@ import {
   MAT_NATIVE_DATE_FORMATS,
   provideNativeDateAdapter,
 } from '@angular/material/core';
+import { TodoTableComponent } from '../../../shared-components/src/lib/todos/todo-table/todo-table.component';
 @Component({
   selector: 'app-showcase',
   standalone: true,
@@ -51,6 +62,7 @@ import {
     FormsModule,
     MatButtonModule,
     TodoListComponent,
+    TodoTableComponent,
   ],
   providers: [ShowcaseStore],
   templateUrl: './showcase.component.html',
@@ -70,8 +82,10 @@ export class ShowcaseComponent {
       data: { name: this.name(), animal: this.animal() },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((todo) => {
+      // console.log(`Dialog result: ${result}`);
+      console.log('Created Todo =>', todo);
+      this.todoStore.addTodo(todo);
     });
     const node = 'test';
     const testFn = (hello: string): string => `message: ${hello}`;
@@ -143,9 +157,10 @@ export interface DialogData {
     </mat-dialog-content>
     <mat-dialog-actions>
       <button mat-button (click)="onNoClick()">No Thanks</button>
-      <button mat-button [mat-dialog-close]="animal()" cdkFocusInitial>
+      <!-- <button mat-button [mat-dialog-close]="animal()" cdkFocusInitial>
         Ok
-      </button>
+      </button> -->
+      <button mat-button (click)="onAddTodo()" cdkFocusInitial>Ok</button>
     </mat-dialog-actions>
   `,
   standalone: true,
@@ -174,12 +189,12 @@ export class DialogOverviewExampleDialog {
 
   readonly title = model('');
   readonly description = model('');
-  readonly category = model(undefined);
+  readonly category = model('Personal');
   readonly categoryOptions = todoCategoryList;
   readonly dueDate = model(new Date());
-  readonly weight = model(undefined);
+  readonly weight = model(1);
   readonly weightOptions = todoWeightList;
-  readonly timeEstimate = model(undefined);
+  readonly timeEstimate = model(0.5);
   readonly timeEstimateOptions = todoTimeList.map((time) => ({
     key: time,
     label: this.castTimeLabel(time),
@@ -187,6 +202,18 @@ export class DialogOverviewExampleDialog {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onAddTodo(): void {
+    const todo = new Todo();
+    if (this.title()) todo.setTitle(this.title());
+    if (this.description()) todo.setDescription(this.description());
+    if (!!this.category()) todo.setCategory(this.category() as TodoCategory);
+    if (this.dueDate()) todo.setDueDate(this.dueDate());
+    if (this.weight()) todo.setDifficulty(this.weight() as TodoWeight);
+    if (this.timeEstimate())
+      todo.setTimeEstimate(this.timeEstimate() as TodoTime);
+    this.dialogRef.close(todo.getter());
   }
 
   /**

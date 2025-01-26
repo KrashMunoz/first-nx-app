@@ -22,16 +22,15 @@ export interface ITodo {
 }
 
 export class Todo {
-  constructor(
-    public id: string,
-    public title: string,
-    public description: string,
-    public creationDate: Date,
-    public dueDate: Date,
-    public category: TodoCategory,
-    public difficultyWeight: TodoWeight,
-    public timeEstimate: TodoTime
-  ) {
+  private id: string;
+  private title: string | undefined;
+  private description: string | undefined;
+  private creationDate: Date;
+  private dueDate: Date | undefined;
+  private category: TodoCategory | undefined;
+  private difficultyWeight: TodoWeight | undefined;
+  private timeEstimate: TodoTime | undefined;
+  constructor() {
     this.id = generateShortId();
     this.creationDate = new Date();
   }
@@ -43,21 +42,45 @@ export class Todo {
 
   public setDescription(description: string) {
     this.description = description;
+    return this;
   }
 
   public setCategory(category: TodoCategory) {
     this.category = category;
+    return this;
   }
 
   public setDueDate(dueDate: Date) {
     this.dueDate = dueDate;
+    return this;
   }
 
   public setDifficulty(weight: TodoWeight) {
     this.difficultyWeight = weight;
+    return this;
   }
 
   public setTimeEstimate(estimate: TodoTime) {
     this.timeEstimate = estimate;
+    return this;
+  }
+
+  public getter(): ITodo {
+    return {
+      id: this.id,
+      title: String(this.title),
+      description: String(this.description),
+      creationDate: this.creationDate,
+      dueDate: this.dueDate || new Date(),
+      category: this.category || 'Personal',
+      difficultyWeight: this.difficultyWeight || 1,
+      timeEstimate: this.timeEstimate || 0.5,
+    };
   }
 }
+
+// export class TodoFactory {
+//   createTodoBuilder(): Todo {
+//     return new Todo();
+//   }
+// }
