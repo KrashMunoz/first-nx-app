@@ -1,4 +1,4 @@
-function generateShortId() {
+export function generateShortId() {
   /**
    * Generates a shorter unique random ID.
    * @returns {string} A short unique random ID string.
