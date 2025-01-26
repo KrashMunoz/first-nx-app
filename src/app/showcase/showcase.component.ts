@@ -189,6 +189,11 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 
+  /**
+   * Cast a label for a todo time option
+   * @param {TodoTime} timeOption - A time option provided form the type definition
+   * @returns {string} label
+   */
   private castTimeLabel(timeOption: TodoTime): string {
     let label: string;
     switch (timeOption) {
