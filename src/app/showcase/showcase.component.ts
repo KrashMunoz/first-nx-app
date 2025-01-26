@@ -206,6 +206,10 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 
+  /**
+   * Create a new todo instance using the todo model and todo builder
+   * @todo move the todo model to a reactive form with validation
+   */
   onAddTodo(): void {
     const todo = new Todo();
     if (this.title()) todo.setTitle(this.title());
