@@ -1,8 +1,11 @@
-import { Component, inject, model, signal } from '@angular/core';
+import { Component, inject, model, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   GridLayoutComponent,
+  ITodo,
+  todoCategoryList,
   TodoListComponent,
+  TodoStore,
 } from '@myngapp/shared-components';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -46,7 +49,8 @@ import {
 })
 export class ShowcaseComponent {
   public store = inject(ShowcaseStore);
-  public todos: string[] = ['one', 'two', 'three'];
+  public todoStore = inject(TodoStore);
+  public todos: Signal<ITodo[]> = this.todoStore.$todos;
   readonly animal = signal('animal value');
   readonly name = model('name value');
   readonly dialog = inject(MatDialog);
@@ -83,9 +87,33 @@ export interface DialogData {
     <h2 mat-dialog-title>Adding Todo: {{ data.name }}</h2>
     <mat-dialog-content>
       <p>What's your favorite animal?</p>
-      <mat-form-field>
+      <!-- <mat-form-field>
         <mat-label>Favorite Animal</mat-label>
         <input matInput [(ngModel)]="animal" />
+      </mat-form-field> -->
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="title" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="description" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <input matInput [(ngModel)]="category" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Due Date</mat-label>
+        <input matInput [(ngModel)]="dueDate" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Weight</mat-label>
+        <input matInput [(ngModel)]="weight" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>timeEstimate</mat-label>
+        <input matInput [(ngModel)]="timeEstimate" />
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
@@ -111,6 +139,14 @@ export class DialogOverviewExampleDialog {
   readonly dialogRef = inject(MatDialogRef<DialogOverviewExampleDialog>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
   readonly animal = model(this.data.animal);
+  // TODO Model
+
+  readonly title = model('');
+  readonly description = model('');
+  readonly category = model(undefined);
+  readonly dueDate = model(new Date().toLocaleString('en-US'));
+  readonly weight = model(undefined);
+  readonly timeEstimate = model(undefined);
 
   onNoClick(): void {
     this.dialogRef.close();

@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from '@myngapp/shared-components';
+import { NotFoundComponent, TodoStore } from '@myngapp/shared-components';
 import { AboutComponent } from './about/about.component';
 import { MoreComponent } from './more/more.component';
 import { GialloComponent } from './giallo-home/giallo.component';
@@ -16,7 +16,7 @@ export const appRoutes: Route[] = [
   { path: 'about', component: AboutComponent },
   { path: 'more', component: MoreComponent },
   { path: 'giallo', component: GialloComponent },
-  { path: 'showcase', component: ShowcaseComponent },
+  { path: 'showcase', component: ShowcaseComponent, providers: [TodoStore] },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
 ];

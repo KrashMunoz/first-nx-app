@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
+import { ITodo } from '../model/todo.model';
 
 @Component({
   selector: 'lib-todo-list',
@@ -10,5 +11,5 @@ import { MatListModule } from '@angular/material/list';
   styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
-  todoList = input<any[]>([]);
+  todoList = input<ITodo[]>([]);
 }
