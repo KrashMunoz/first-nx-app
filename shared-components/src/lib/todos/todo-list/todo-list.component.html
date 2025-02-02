@@ -4,7 +4,7 @@
     <!-- TODO: Add remove button and trigger remove function -->
     <span>{{ todo.title }}</span>
     <div matListItemMeta>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="deleteTodo(todo.id)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>

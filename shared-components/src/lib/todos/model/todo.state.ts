@@ -13,8 +13,20 @@ export class TodoStore {
 
   public readonly $todos = this.state.$todos.asReadonly();
 
-  public addTodo(todo: ITodo) {
+  /**
+   * Add Todo
+   * @param {ITodo} todo
+   */
+  public addTodo(todo: ITodo): void {
     this.state.$todos.update((todos) => [...todos, todo]);
+  }
+
+  /**
+   * Delete Todo
+   * @param {string} id
+   */
+  public deleteTodo(id: string): void {
+    this.state.$todos.update((todos) => todos.filter((todo) => todo.id !== id));
   }
 
   private loadTodos = createEffect((_) => _.pipe(tap(() => {})));

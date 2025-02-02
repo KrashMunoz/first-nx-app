@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { ITodo } from '../model/todo.model';
@@ -13,4 +13,13 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class TodoListComponent {
   todoList = input<ITodo[]>([]);
+  onDeleteTodo = output<string>();
+
+  /**
+   * Emit Delete Todo Event to parent component
+   * @param id
+   */
+  deleteTodo(id: string): void {
+    this.onDeleteTodo.emit(id);
+  }
 }
