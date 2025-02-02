@@ -1,5 +1,13 @@
 <mat-list>
   @for (todo of todoList(); track todo) {
-  <mat-list-item>{{ todo.title }} | {{ todo.description }}</mat-list-item>
+  <mat-list-item>
+    <!-- TODO: Add remove button and trigger remove function -->
+    <span>{{ todo.title }}</span>
+    <div matListItemMeta>
+      <button mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-list-item>
   }
 </mat-list>

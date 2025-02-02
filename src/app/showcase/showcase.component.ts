@@ -23,7 +23,6 @@ import {
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { TestStoreService } from '../services/test-store/test-store.service';
 import { ShowcaseStore } from './showcase.store';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
@@ -85,7 +84,10 @@ export class ShowcaseComponent {
     });
 
     dialogRef.afterClosed().subscribe((todo) => {
-      // console.log(`Dialog result: ${result}`);
+      if (!todo) {
+        console.warn('No todo created');
+        return;
+      }
       console.log('Created Todo =>', todo);
       this.todoStore.addTodo(todo);
     });
@@ -202,6 +204,9 @@ export class DialogOverviewExampleDialog {
     label: this.castTimeLabel(time),
   }));
 
+  /**
+   * No click event handler
+   */
   onNoClick(): void {
     this.dialogRef.close();
   }
