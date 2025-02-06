@@ -6,14 +6,14 @@
   <div class="grid-item" [style.gridArea]="'left-sidebar'">
     <div id="tasks-container">
       <h1>Todos</h1>
-      <button mat-raised-button (click)="openDialog()">Open Dialog</button>
+      <button mat-raised-button (click)="openDialog()">Add Todo</button>
       <lib-todo-list
         [todoList]="todos()"
         (onDeleteTodo)="todoStore.deleteTodo($event)" />
     </div>
   </div>
   <div class="grid-item" [style.gridArea]="'map'">
-    <lib-todo-map [todoList]="todos()" />
+    <lib-todo-map [todoGraph]="todoGraph()" />
   </div>
   <div class="grid-item" [style.gridArea]="'table'">
     <lib-todo-table [todoList]="todos()" />

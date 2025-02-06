@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  Graph,
   GridLayoutComponent,
   ITodo,
   Todo,
@@ -73,6 +74,7 @@ export class ShowcaseComponent {
   public store = inject(ShowcaseStore);
   public todoStore = inject(TodoStore);
   public todos: Signal<ITodo[]> = this.todoStore.$todos;
+  public todoGraph: Signal<Graph<string>> = this.todoStore.$todoGraph;
   readonly animal = signal('animal value');
   readonly name = model('name value');
   readonly dialog = inject(MatDialog);

@@ -8,10 +8,11 @@ import { Graph } from '../../utils/graph';
 export class TodoStore {
   private readonly state = {
     $todos: signal<ITodo[]>([]),
-    $todoGraph: signal<Graph<string> | undefined>(undefined),
+    $todoGraph: signal<Graph<string>>(new Graph<string>()),
   };
 
   public readonly $todos = this.state.$todos.asReadonly();
+  public readonly $todoGraph = this.state.$todoGraph.asReadonly();
 
   /**
    * Add Todo
@@ -19,6 +20,10 @@ export class TodoStore {
    */
   public addTodo(todo: ITodo): void {
     this.state.$todos.update((todos) => [...todos, todo]);
+    this.state.$todoGraph.update((graph) => {
+      graph.addVertex(todo.id);
+      return graph;
+    });
   }
 
   /**
@@ -27,6 +32,10 @@ export class TodoStore {
    */
   public deleteTodo(id: string): void {
     this.state.$todos.update((todos) => todos.filter((todo) => todo.id !== id));
+    this.state.$todoGraph.update((graph) => {
+      graph.removeVertex(id);
+      return graph;
+    });
   }
 
   private loadTodos = createEffect((_) => _.pipe(tap(() => {})));
