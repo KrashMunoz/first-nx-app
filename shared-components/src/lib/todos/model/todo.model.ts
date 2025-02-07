@@ -21,6 +21,10 @@ export interface ITodo {
   timeEstimate: TodoTime;
 }
 
+/**
+ * Todo using builder creational pattern
+ * @class
+ */
 export class Todo {
   private id: string;
   private title: string | undefined;
@@ -35,36 +39,77 @@ export class Todo {
     this.creationDate = new Date();
   }
 
+  /**
+   * Set Title
+   * @method
+   * @param {string} title - Title for todo object
+   * @returns {this}
+   */
   public setTitle(title: string): this {
     this.title = title;
     return this;
   }
 
-  public setDescription(description: string) {
+  /**
+   * Set Description
+   * @method
+   * @param {string} description - Description of todo action
+   * @returns {this}
+   */
+  public setDescription(description: string): this {
     this.description = description;
     return this;
   }
 
-  public setCategory(category: TodoCategory) {
+  /**
+   * Set Category
+   * @method
+   * @param {string} category - Category for the todo
+   * @returns {this}
+   */
+  public setCategory(category: TodoCategory): this {
     this.category = category;
     return this;
   }
 
-  public setDueDate(dueDate: Date) {
+  /**
+   * Set Due Date
+   * @method
+   * @param {Date} dueDate - Due date for the todo
+   * @returns {this}
+   */
+  public setDueDate(dueDate: Date): this {
     this.dueDate = dueDate;
     return this;
   }
 
-  public setDifficulty(weight: TodoWeight) {
+  /**
+   * Set Difficulty
+   * @method
+   * @param {TodoWeight} weight - Set the difficulty weight for the
+   * @returns {this}
+   */
+  public setDifficulty(weight: TodoWeight): this {
     this.difficultyWeight = weight;
     return this;
   }
 
-  public setTimeEstimate(estimate: TodoTime) {
+  /**
+   * Set Estimate
+   * @method
+   * @param {TodoTime} estimate - Time estimate to complete the task
+   * @returns {this}
+   */
+  public setTimeEstimate(estimate: TodoTime): this {
     this.timeEstimate = estimate;
     return this;
   }
 
+  /**
+   * Get the todo object
+   * @method
+   * @returns {ITodo}
+   */
   public getter(): ITodo {
     return {
       id: this.id,
