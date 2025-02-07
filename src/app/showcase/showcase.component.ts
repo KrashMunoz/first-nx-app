@@ -195,12 +195,12 @@ export class DialogOverviewExampleDialog {
 
   readonly title = model('');
   readonly description = model('');
-  readonly category = model('Personal');
+  readonly category = model<TodoCategory>('Personal');
   readonly categoryOptions = todoCategoryList;
   readonly dueDate = model(new Date());
-  readonly weight = model(1);
+  readonly weight = model<TodoWeight>(1);
   readonly weightOptions = todoWeightList;
-  readonly timeEstimate = model(0.5);
+  readonly timeEstimate = model<TodoTime>(0.5);
   readonly timeEstimateOptions = todoTimeList.map((time) => ({
     key: time,
     label: this.castTimeLabel(time),
@@ -222,10 +222,10 @@ export class DialogOverviewExampleDialog {
     todo
       .setTitle(this.title() || todo.getter().id)
       .setDescription(this.description() || 'N/A')
-      .setCategory(this.category() as TodoCategory)
+      .setCategory(this.category())
       .setDueDate(this.dueDate())
-      .setDifficulty(this.weight() as TodoWeight)
-      .setTimeEstimate(this.timeEstimate() as TodoTime);
+      .setDifficulty(this.weight())
+      .setTimeEstimate(this.timeEstimate());
     this.dialogRef.close(todo.getter());
   }
 
