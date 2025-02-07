@@ -219,13 +219,13 @@ export class DialogOverviewExampleDialog {
    */
   onAddTodo(): void {
     const todo = new Todo();
-    if (this.title()) todo.setTitle(this.title());
-    if (this.description()) todo.setDescription(this.description());
-    if (!!this.category()) todo.setCategory(this.category() as TodoCategory);
-    if (this.dueDate()) todo.setDueDate(this.dueDate());
-    if (this.weight()) todo.setDifficulty(this.weight() as TodoWeight);
-    if (this.timeEstimate())
-      todo.setTimeEstimate(this.timeEstimate() as TodoTime);
+    todo
+      .setTitle(this.title() || todo.getter().id)
+      .setDescription(this.description() || 'N/A')
+      .setCategory(this.category() as TodoCategory)
+      .setDueDate(this.dueDate())
+      .setDifficulty(this.weight() as TodoWeight)
+      .setTimeEstimate(this.timeEstimate() as TodoTime);
     this.dialogRef.close(todo.getter());
   }
 
