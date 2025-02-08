@@ -1,0 +1,14 @@
+.add-todo-form {
+  min-width: 400px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  .half-width {
+    width: 50%;
+  }
+}

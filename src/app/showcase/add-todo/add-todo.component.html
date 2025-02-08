@@ -1,43 +1,51 @@
 <h2 mat-dialog-title>Add Todo</h2>
 <mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="title" />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="description" />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Category</mat-label>
-    <mat-select [(ngModel)]="category">
-      @for (category of categoryOptions; track category) {
-      <mat-option [value]="category">{{ category }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Due Date</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="dueDate" />
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Weight</mat-label>
-    <mat-select [(ngModel)]="weight">
-      @for (weight of weightOptions; track weight) {
-      <mat-option [value]="weight">{{ weight }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Time Estimate</mat-label>
-    <mat-select [(ngModel)]="timeEstimate">
-      @for (time of timeEstimateOptions; track time) {
-      <mat-option [value]="time.key">{{ time.label }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+  <div class="add-todo-form">
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="title" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Add description here..."></textarea>
+    </mat-form-field>
+    <div class="full-width">
+      <mat-form-field class="half-width">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="category">
+          @for (category of categoryOptions; track category) {
+          <mat-option [value]="category">{{ category }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dueDate" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="full-width">
+      <mat-form-field class="half-width">
+        <mat-label>Weight</mat-label>
+        <mat-select [(ngModel)]="weight">
+          @for (weight of weightOptions; track weight) {
+          <mat-option [value]="weight">{{ weight }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <mat-label>Time Estimate</mat-label>
+        <mat-select [(ngModel)]="timeEstimate">
+          @for (time of timeEstimateOptions; track time) {
+          <mat-option [value]="time.key">{{ time.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
