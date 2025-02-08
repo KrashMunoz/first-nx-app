@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ShowcaseStore } from './showcase.store';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { TodoTableComponent } from '../../../shared-components/src/lib/todos/todo-table/todo-table.component';
@@ -36,6 +37,7 @@ import { AddTodoComponent } from './add-todo/add-todo.component';
     TodoListComponent,
     TodoTableComponent,
     TodoMapComponent,
+    MatSnackBarModule,
   ],
   providers: [ShowcaseStore],
   templateUrl: './showcase.component.html',
@@ -47,16 +49,20 @@ export class ShowcaseComponent {
   readonly todos: Signal<ITodo[]> = this.todoStore.$todos;
   readonly todoGraph: Signal<Graph<string>> = this.todoStore.$todoGraph;
   readonly dialog = inject(MatDialog);
+  private _snackBar = inject(MatSnackBar);
 
   openDialog() {
     const dialogRef = this.dialog.open(AddTodoComponent);
 
     dialogRef.afterClosed().subscribe((todo) => {
       if (!todo) {
-        console.warn('No todo created');
+        const message = 'No todo created';
+        console.warn(message);
+        this._snackBar.open(message, 'Close', {
+          duration: 2000,
+        });
         return;
       }
-      // console.log('Created Todo =>', todo);
       this.todoStore.addTodo(todo);
     });
   }
