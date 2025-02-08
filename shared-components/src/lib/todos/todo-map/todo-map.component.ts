@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ITodo } from '../model/todo.model';
+import { ITodo } from '../model';
 import { Graph } from '@myngapp/shared-components';
 
 @Component({
