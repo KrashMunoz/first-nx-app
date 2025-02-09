@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="grid-item" [style.gridArea]="'map'">
-    <lib-todo-map [todoGraph]="todoGraph()" />
+    <lib-todo-map [todoGraph]="todoGraph()" [todoList]="todos()" />
   </div>
   <div class="grid-item" [style.gridArea]="'table'">
     <lib-todo-table [todoList]="todos()" />
