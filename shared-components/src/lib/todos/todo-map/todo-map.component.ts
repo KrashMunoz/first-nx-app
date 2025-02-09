@@ -26,23 +26,18 @@ interface Link {
   styleUrl: './todo-map.component.scss',
 })
 export class TodoMapComponent implements AfterViewInit {
-  todoList = input<ITodo[]>([]);
-  todoGraph = input<Graph<string>>();
-  nodes = computed(() => {
+  readonly todoList = input<ITodo[]>([]);
+  readonly todoGraph = input<Graph<string>>();
+  readonly todoEdges = input<unknown[]>([]);
+  readonly nodes = computed(() => {
     return this.todoList() || [];
   });
-  links = computed(() => {
-    const edges = this.todoGraph()?.getAllEdges();
-    if (!edges) {
-      return [];
-    } else {
-      return (
-        edges.map((edge) => ({
-          source: edge.from,
-          target: edge.end,
-        })) || []
-      );
-    }
+  readonly links = computed(() => {
+    const edges = this.todoEdges();
+    return edges.map((edge: any) => ({
+      source: edge['from'],
+      target: edge['end'],
+    }));
   });
 
   height = 270;
@@ -58,6 +53,9 @@ export class TodoMapComponent implements AfterViewInit {
     });
   }
 
+  /**
+   * Create Force Graph
+   */
   private createForceGraph(): void {
     const categories: string[] = Array.from(
       new Set(this.todoList().map((i) => i.category))
@@ -91,6 +89,9 @@ export class TodoMapComponent implements AfterViewInit {
     this.createForceGraph();
   }
 
+  /**
+   * Trigger graph updates
+   */
   private updateGraph(): void {
     const svg = this.svg!;
     const simulation = this.simulation!;

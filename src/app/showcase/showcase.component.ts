@@ -18,6 +18,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { TodoTableComponent } from '../../../shared-components/src/lib/todos/todo-table/todo-table.component';
 import { TodoMapComponent } from '../../../shared-components/src/lib/todos/todo-map/todo-map.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
+import { AddEdgeComponent } from './add-edge/add-edge.component';
 @Component({
   selector: 'app-showcase',
   standalone: true,
@@ -48,9 +49,13 @@ export class ShowcaseComponent {
   readonly todoStore = inject(TodoStore);
   readonly todos: Signal<ITodo[]> = this.todoStore.$todos;
   readonly todoGraph: Signal<Graph<string>> = this.todoStore.$todoGraph;
+  readonly todoEdges: Signal<unknown[]> = this.todoStore.$todoEdges;
   readonly dialog = inject(MatDialog);
   private _snackBar = inject(MatSnackBar);
 
+  /**
+   * Open Add Todo Dialog
+   */
   openDialog() {
     const dialogRef = this.dialog.open(AddTodoComponent);
 
@@ -64,6 +69,30 @@ export class ShowcaseComponent {
         return;
       }
       this.todoStore.addTodo(todo);
+    });
+  }
+
+  /**
+   * Open Add Edge Dialog
+   */
+  openAddEdgeDialog() {
+    const dialogRef = this.dialog.open(AddEdgeComponent, {
+      data: { vertexList: this.todos() },
+    });
+
+    dialogRef.afterClosed().subscribe((edge) => {
+      if (!edge) {
+        const message = 'No edge created';
+        console.warn(message);
+        this._snackBar.open(message, 'Close', {
+          duration: 2000,
+        });
+        return;
+      }
+      this.todoStore.addGraphEdge(edge);
+      this._snackBar.open('Added Edge Successfully', 'Close', {
+        duration: 2000,
+      });
     });
   }
 

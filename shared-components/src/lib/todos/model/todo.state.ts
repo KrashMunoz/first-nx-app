@@ -9,10 +9,12 @@ export class TodoStore {
   private readonly state = {
     $todos: signal<ITodo[]>([]),
     $todoGraph: signal<Graph<string>>(new Graph<string>()),
+    $todoEdges: signal<unknown[]>([]),
   };
 
   public readonly $todos = this.state.$todos.asReadonly();
   public readonly $todoGraph = this.state.$todoGraph.asReadonly();
+  public readonly $todoEdges = this.state.$todoEdges.asReadonly();
 
   /**
    * Add Todo
@@ -36,6 +38,19 @@ export class TodoStore {
       graph.removeVertex(id);
       return graph;
     });
+    this.state.$todoEdges.set(this.$todoGraph().getAllEdges());
+  }
+
+  /**
+   * Add Edge to graph
+   * @param params
+   */
+  public addGraphEdge(params: { source: string; target: string }) {
+    const { source, target } = params;
+    const newGraph = this.state.$todoGraph();
+    newGraph.addEdge(source, target, true);
+    this.state.$todoGraph.set(newGraph);
+    this.state.$todoEdges.set(newGraph.getAllEdges());
   }
 
   private loadTodos = createEffect((_) => _.pipe(tap(() => {})));

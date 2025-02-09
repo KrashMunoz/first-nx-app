@@ -1,1 +1,25 @@
-<p>add-edge works!</p>
+<h2 mat-dialog-title></h2>
+<mat-dialog-content>
+  <div class="add-edge-container">
+    <mat-form-field>
+      <mat-label>Source</mat-label>
+      <mat-select [(ngModel)]="source">
+        @for (todo of options; track todo) {
+        <mat-option [value]="todo.id">{{ todo.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Target</mat-label>
+      <mat-select [(ngModel)]="target">
+        @for (todo of options; track todo) {
+        <mat-option [value]="todo.id">{{ todo.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onAddEdge()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
