@@ -12,18 +12,17 @@ import {
 import { InventoryStore } from './inventory.store';
 
 @Component({
-  selector: 'lib-vehicle-table',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatExpansionModule,
-    MatInputModule,
-    MatFormFieldModule,
-    InventoryTableComponent,
-  ],
-  templateUrl: './vehicle-table.component.html',
-  styleUrl: './vehicle-table.component.scss',
+    selector: 'lib-vehicle-table',
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatExpansionModule,
+        MatInputModule,
+        MatFormFieldModule,
+        InventoryTableComponent,
+    ],
+    templateUrl: './vehicle-table.component.html',
+    styleUrl: './vehicle-table.component.scss'
 })
 export class VehicleTableComponent {
   readonly panelOpenState = signal(false);

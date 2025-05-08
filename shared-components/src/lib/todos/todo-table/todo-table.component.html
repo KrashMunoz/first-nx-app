@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <!-- <th>ID</th> -->
+    <th>Title</th>
+    <th>Creation Date</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Due Date</th>
+    <th>Difficulty Weight</th>
+    <th>Time Estimate</th>
+  </thead>
+  <tbody>
+    @for (todo of todoList(); track $index) {
+    <tr>
+      <!-- <td>{{ todo.id }}</td> -->
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.creationDate.toLocaleString('en-US') }}</td>
+      <td>{{ todo.description }}</td>
+      <td>{{ todo.category }}</td>
+      <td>{{ todo.dueDate.toLocaleString('en-US') }}</td>
+      <td>{{ todo.difficultyWeight }}</td>
+      <td>{{ todo.timeEstimate }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

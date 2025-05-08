@@ -16,17 +16,16 @@ import {
 } from './grid.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TestComponentComponent,
-    SharedComponentsComponent,
-    ThirdTryComponent,
-    GridLayoutComponent,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [
+        CommonModule,
+        TestComponentComponent,
+        SharedComponentsComponent,
+        ThirdTryComponent,
+        GridLayoutComponent,
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   templateAreas: string = default_template_areas;

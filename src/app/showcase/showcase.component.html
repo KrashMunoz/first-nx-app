@@ -1,13 +1,29 @@
-<lib-grid-layout [columns]="'repeat(6, minmax(100px, 1fr))'" [rows]="'repeat(4, 1fr)'" [gap]="'20px'"
-    [templateAreas]="templateAreas">
-
-    <div class="grid-item" [style.gridArea]="'left-sidebar'">
-        <span>Sidebar</span>
+<lib-grid-layout
+  [columns]="'repeat(6, minmax(100px, 1fr))'"
+  [rows]="'repeat(4, 1fr)'"
+  [gap]="'20px'"
+  [templateAreas]="templateAreas">
+  <div class="grid-item" [style.gridArea]="'left-sidebar'">
+    <div id="tasks-container">
+      <h1>Todos</h1>
+      <div class="flex f-row">
+        <button mat-raised-button (click)="openDialog()">Add Todo</button>
+        <button mat-raised-button (click)="openAddEdgeDialog()">
+          Add Edge
+        </button>
+      </div>
+      <lib-todo-list
+        [todoList]="todos()"
+        (onDeleteTodo)="todoStore.deleteTodo($event)" />
     </div>
-    <div class="grid-item" [style.gridArea]="'map'">
-        <span>Map / Graph</span>
-    </div>
-    <div class="grid-item" [style.gridArea]="'table'">
-        <span>Table</span>
-    </div>
+  </div>
+  <div class="grid-item" [style.gridArea]="'map'">
+    <lib-todo-map
+      [todoGraph]="todoGraph()"
+      [todoList]="todos()"
+      [todoEdges]="todoEdges()" />
+  </div>
+  <div class="grid-item" [style.gridArea]="'table'">
+    <lib-todo-table [todoList]="todos()" />
+  </div>
 </lib-grid-layout>

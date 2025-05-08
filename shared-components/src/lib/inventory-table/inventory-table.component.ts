@@ -7,17 +7,16 @@ import { InventoryItem, sortRowsByName, Vehicle } from '../vehicle-table/model';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'lib-inventory-table',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatInputModule,
-    MatFormFieldModule,
-    FormsModule,
-  ],
-  templateUrl: './inventory-table.component.html',
-  styleUrl: './inventory-table.component.scss',
+    selector: 'lib-inventory-table',
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatInputModule,
+        MatFormFieldModule,
+        FormsModule,
+    ],
+    templateUrl: './inventory-table.component.html',
+    styleUrl: './inventory-table.component.scss'
 })
 export class InventoryTableComponent {
   isReadonly: InputSignal<boolean> = input<boolean>(false);
