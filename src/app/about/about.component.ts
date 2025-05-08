@@ -9,17 +9,16 @@ import {
 import { TestStoreService } from '../services/test-store/test-store.service';
 
 @Component({
-  selector: 'app-about',
-  standalone: true,
-  providers: [InventoryStore],
-  imports: [
-    CommonModule,
-    GridLayoutComponent,
-    VehicleTableComponent,
-    InventoryTableComponent,
-  ],
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.scss',
+    selector: 'app-about',
+    providers: [InventoryStore],
+    imports: [
+        CommonModule,
+        GridLayoutComponent,
+        VehicleTableComponent,
+        InventoryTableComponent,
+    ],
+    templateUrl: './about.component.html',
+    styleUrl: './about.component.scss'
 })
 export class AboutComponent {
   store = inject(TestStoreService);

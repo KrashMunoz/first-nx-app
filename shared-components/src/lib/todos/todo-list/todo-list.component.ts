@@ -5,11 +5,10 @@ import { ITodo } from '../model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
-  selector: 'lib-todo-list',
-  standalone: true,
-  imports: [CommonModule, MatListModule, MatIconModule, MatButtonModule],
-  templateUrl: './todo-list.component.html',
-  styleUrl: './todo-list.component.scss',
+    selector: 'lib-todo-list',
+    imports: [CommonModule, MatListModule, MatIconModule, MatButtonModule],
+    templateUrl: './todo-list.component.html',
+    styleUrl: './todo-list.component.scss'
 })
 export class TodoListComponent {
   todoList = input<ITodo[]>([]);

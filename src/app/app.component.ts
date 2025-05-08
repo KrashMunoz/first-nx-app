@@ -7,12 +7,11 @@ import { TestStoreService } from './services/test-store/test-store.service';
 import { AppStore } from './app.store';
 
 @Component({
-  standalone: true,
-  providers: [TestStoreService, AppStore],
-  imports: [RouterModule, NavBarComponent],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    providers: [TestStoreService, AppStore],
+    imports: [RouterModule, NavBarComponent],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'myngapp';

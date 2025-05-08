@@ -2,11 +2,10 @@ import { Component, computed, effect, HostBinding, input, Input, signal } from '
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'lib-grid-layout',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './grid-layout.component.html',
-  styleUrl: './grid-layout.component.scss',
+    selector: 'lib-grid-layout',
+    imports: [CommonModule],
+    templateUrl: './grid-layout.component.html',
+    styleUrl: './grid-layout.component.scss'
 })
 export class GridLayoutComponent {
     // Input properties for grid configuration

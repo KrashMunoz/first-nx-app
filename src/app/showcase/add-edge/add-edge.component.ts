@@ -16,22 +16,21 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ITodo } from '@myngapp/shared-components';
 
 @Component({
-  selector: 'app-add-edge',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatSelectModule,
-    MatDatepickerModule,
-  ],
-  templateUrl: './add-edge.component.html',
-  styleUrl: './add-edge.component.scss',
+    selector: 'app-add-edge',
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        MatSelectModule,
+        MatDatepickerModule,
+    ],
+    templateUrl: './add-edge.component.html',
+    styleUrl: './add-edge.component.scss'
 })
 export class AddEdgeComponent {
   readonly dialogRef = inject(MatDialogRef<AddEdgeComponent>);

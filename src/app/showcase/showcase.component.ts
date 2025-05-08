@@ -20,29 +20,28 @@ import { TodoMapComponent } from '../../../shared-components/src/lib/todos/todo-
 import { AddTodoComponent } from './add-todo/add-todo.component';
 import { AddEdgeComponent } from './add-edge/add-edge.component';
 @Component({
-  selector: 'app-showcase',
-  standalone: true,
-  imports: [
-    CommonModule,
-    GridLayoutComponent,
-    FormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatListModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    TodoListComponent,
-    TodoTableComponent,
-    TodoMapComponent,
-    MatSnackBarModule,
-  ],
-  providers: [ShowcaseStore],
-  templateUrl: './showcase.component.html',
-  styleUrl: './showcase.component.scss',
+    selector: 'app-showcase',
+    imports: [
+        CommonModule,
+        GridLayoutComponent,
+        FormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatListModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        TodoListComponent,
+        TodoTableComponent,
+        TodoMapComponent,
+        MatSnackBarModule,
+    ],
+    providers: [ShowcaseStore],
+    templateUrl: './showcase.component.html',
+    styleUrl: './showcase.component.scss'
 })
 export class ShowcaseComponent {
   readonly store = inject(ShowcaseStore);

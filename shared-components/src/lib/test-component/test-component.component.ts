@@ -8,18 +8,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
-  selector: 'lib-test-component',
-  standalone: true,
-  imports: [
-    CommonModule,
-    StoreModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-  ],
-  templateUrl: './test-component.component.html',
-  styleUrl: './test-component.component.scss',
+    selector: 'lib-test-component',
+    imports: [
+        CommonModule,
+        StoreModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+    ],
+    templateUrl: './test-component.component.html',
+    styleUrl: './test-component.component.scss'
 })
 export class TestComponentComponent {
   userForm: string | undefined;

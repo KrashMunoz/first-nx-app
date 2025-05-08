@@ -5,11 +5,10 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/user.model';
 import { State, usersFeature } from '../../../../src/app/user.reducer';
 @Component({
-  selector: 'lib-shared-components',
-  standalone: true,
-  imports: [CommonModule, StoreModule, AsyncPipe],
-  templateUrl: './shared-components.component.html',
-  styleUrl: './shared-components.component.scss',
+    selector: 'lib-shared-components',
+    imports: [CommonModule, StoreModule, AsyncPipe],
+    templateUrl: './shared-components.component.html',
+    styleUrl: './shared-components.component.scss'
 })
 export class SharedComponentsComponent {
   user$: Observable<State>;
