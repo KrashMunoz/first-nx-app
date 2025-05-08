@@ -5,25 +5,22 @@ import {
   effect,
   ElementRef,
   input,
-  OnInit,
-  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ITodo } from '../model';
-import { Graph } from '@myngapp/shared-components';
+import { Graph } from '../../utils/graph';
 import * as d3 from 'd3';
 
-interface Link {
-  source: string;
-  target: string;
-}
+// interface Link {
+//   source: string;
+//   target: string;
+// }
 
 @Component({
-  selector: 'lib-todo-map',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './todo-map.component.html',
-  styleUrl: './todo-map.component.scss',
+    selector: 'lib-todo-map',
+    imports: [CommonModule],
+    templateUrl: './todo-map.component.html',
+    styleUrl: './todo-map.component.scss'
 })
 export class TodoMapComponent implements AfterViewInit {
   readonly todoList = input<ITodo[]>([]);
@@ -49,7 +46,10 @@ export class TodoMapComponent implements AfterViewInit {
 
   constructor(private elementRef: ElementRef) {
     effect(() => {
-      this.updateGraph();
+      const change = this.todoList() || this.todoEdges();
+      if (change) {
+        this.updateGraph();
+      }
     });
   }
 
@@ -57,11 +57,11 @@ export class TodoMapComponent implements AfterViewInit {
    * Create Force Graph
    */
   private createForceGraph(): void {
-    const categories: string[] = Array.from(
-      new Set(this.todoList().map((i) => i.category))
-    );
+    // const categories: string[] = Array.from(
+    //   new Set(this.todoList().map((i) => i.category))
+    // );
     const nodes: (d3.SimulationNodeDatum & ITodo)[] = this.nodes();
-    const color = d3.scaleOrdinal(categories, d3.schemeCategory10);
+    // const color = d3.scaleOrdinal(categories, d3.schemeCategory10);
 
     this.simulation = d3
       .forceSimulation(nodes)
@@ -93,8 +93,16 @@ export class TodoMapComponent implements AfterViewInit {
    * Trigger graph updates
    */
   private updateGraph(): void {
-    const svg = this.svg!;
-    const simulation = this.simulation!;
+    const svg = this.svg;
+    if (!svg) {
+      console.warn('svg is undefined');
+      return;
+    }
+    const simulation = this.simulation;
+    if (!simulation) {
+      console.warn('simulation is undefined');
+      return;
+    }
 
     svg.selectAll('*').remove(); // Clear previous elements
 

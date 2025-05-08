@@ -29,26 +29,25 @@ import {
 } from '@angular/material/core';
 
 @Component({
-  selector: 'app-add-todo',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatSelectModule,
-    MatDatepickerModule,
-  ],
-  providers: [
-    provideNativeDateAdapter(),
-    { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS },
-  ],
-  templateUrl: './add-todo.component.html',
-  styleUrl: './add-todo.component.scss',
+    selector: 'app-add-todo',
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        MatSelectModule,
+        MatDatepickerModule,
+    ],
+    providers: [
+        provideNativeDateAdapter(),
+        { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS },
+    ],
+    templateUrl: './add-todo.component.html',
+    styleUrl: './add-todo.component.scss'
 })
 export class AddTodoComponent {
   readonly dialogRef = inject(MatDialogRef<AddTodoComponent>);

@@ -5,11 +5,10 @@ import { Store } from '@ngrx/store';
 import { State, usersFeature } from 'src/app/user.reducer';
 
 @Component({
-  selector: 'lib-third-try',
-  standalone: true,
-  imports: [CommonModule, AsyncPipe],
-  templateUrl: './third-try.component.html',
-  styleUrl: './third-try.component.scss',
+    selector: 'lib-third-try',
+    imports: [CommonModule, AsyncPipe],
+    templateUrl: './third-try.component.html',
+    styleUrl: './third-try.component.scss'
 })
 export class ThirdTryComponent {
   user$: Observable<State>;

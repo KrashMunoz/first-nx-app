@@ -4,11 +4,10 @@ import { Graph, graphTest1 } from '@myngapp/shared-components';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-giallo',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './giallo.component.html',
-  styleUrl: './giallo.component.scss',
+    selector: 'app-giallo',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './giallo.component.html',
+    styleUrl: './giallo.component.scss'
 })
 
 export class GialloComponent {
